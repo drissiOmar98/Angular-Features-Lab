@@ -1,0 +1,110 @@
+<div class="example-container">
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/resource-api">Go to List</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example1'">Prev</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example3'">Next</button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Demo">
+      <div class="content-area">
+        <h2>Resource API Example 2: User Data Simulation with resource()</h2>
+        <p>This example demonstrates the basic usage of Angular's resource API for for async operations. This example
+          simulates fetching user data.</p>
+      </div>
+
+      <div class="demo-section">
+        <h3>User Data Simulation with resource()</h3>
+        <mat-card>
+          <mat-card-content>
+
+            <div class="controls">
+              <button mat-raised-button color="primary" (click)="userId.set(1)">
+                <mat-icon>refresh</mat-icon>
+                Load User 1
+              </button>
+
+              <button mat-raised-button color="primary" (click)="userId.set(2)">
+                <mat-icon>refresh</mat-icon>
+                Load User 2
+              </button>
+
+              <button mat-raised-button color="primary" (click)="userId.set(3)">
+                <mat-icon>refresh</mat-icon>
+                Load User 3
+              </button>
+
+              <button mat-raised-button color="warn" (click)="userId.set(0)">
+                <mat-icon>restart_alt</mat-icon>
+                Reset
+              </button>
+
+            </div>
+
+
+            @if (userResource.isLoading()) {
+              <div class="loading-state">
+                <mat-icon>cached</mat-icon>
+                <p>Loading user data...</p>
+              </div>
+            } @else if (userResource.status() === 'error') {
+              <div class="error-state">
+                <mat-icon>error</mat-icon>
+                <p>Error: {{ userResource.error()?.message }}</p>
+              </div>
+            } @else {
+              @if (userResource.value(); as user) {
+                <div class="user-display">
+                  <mat-card class="user-card">
+                    <mat-card-header>
+                      <mat-card-title>
+                        <mat-icon>person</mat-icon>
+                        User Details
+                      </mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                      <p class="user-text"><strong>ID:</strong> {{ user.id }}</p>
+                      <p class="user-text"><strong>Name:</strong> {{ user.name }}</p>
+                      <p class="user-text"><strong>Email:</strong> {{ user.email }}</p>
+                      <p class="user-text"><strong>Role:</strong> {{ user.role }}</p>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              }
+
+
+            }
+          </mat-card-content>
+        </mat-card>
+
+        <h3>Key Features</h3>
+        <mat-card>
+          <mat-card-content>
+            <ul>
+              <li><strong>Automatic Loading States:</strong> Built-in loading and error handling</li>
+              <li><strong>Reactive Updates:</strong> Automatically refetches when parameters change</li>
+              <li><strong>Type Safety:</strong> Full TypeScript support with proper typing</li>
+              <li><strong>Simple API:</strong> Easy to use with minimal boilerplate</li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="TS">
+      <div class="code-example">
+        <div class="code-header">
+          <div class="window-controls">
+            <div class="control close"></div>
+            <div class="control minimize"></div>
+            <div class="control maximize"></div>
+          </div>
+          <span class="file-name">resource-example2.component.ts</span>
+        </div>
+        <pre><code>{{ codeExample }}</code></pre>
+      </div>
+    </mat-tab>
+
+
+  </mat-tab-group>
+</div>
