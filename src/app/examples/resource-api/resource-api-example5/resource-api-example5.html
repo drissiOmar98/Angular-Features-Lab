@@ -1,0 +1,138 @@
+<div class="example-container">
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/resource-api">Go to List</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example2'">Prev</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example6'">Next</button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Demo">
+      <div class="content-area">
+        <h2>Resource API Example 3: User Search with resource()</h2>
+        <p>This example demonstrates an interactive user search powered by
+          <code>resource()</code> and signals. It showcases request-based resources,
+          abortable HTTP calls, manual reloads, and local resource updates.</p>
+      </div>
+
+      <div class="demo-section">
+        <h3>Demo Content</h3>
+        <mat-card>
+          <mat-card-content>
+
+            <div class="demo-actions search-bar">
+              <mat-form-field appearance="outline" class="search-field">
+                <mat-label>Search users</mat-label>
+
+                <input
+                  matInput
+                  type="search"
+                  placeholder="Type a name..."
+                  (input)="query.set($any($event.target).value)"
+                />
+
+                <mat-icon matPrefix>search</mat-icon>
+
+              </mat-form-field>
+            </div>
+
+
+            <!--<div class="demo-actions">
+              <button mat-raised-button color="primary" (click)="userSignal.reload()">
+                <mat-icon>refresh</mat-icon>
+                Fetch Random GitHub User
+              </button>
+            </div>-->
+
+
+            <div class="controls">
+              <button mat-raised-button color="primary" (click)="users.reload()">
+                <mat-icon>refresh</mat-icon>
+                Reload
+              </button>
+
+              <button mat-raised-button color="accent" (click)="addUser()">
+                <mat-icon>person_add</mat-icon>
+                Add User
+              </button>
+
+              <button mat-raised-button color="warn" (click)="users.set([])">
+                <mat-icon>delete</mat-icon>
+                Clear
+              </button>
+            </div>
+
+
+            @let data = users.value();
+            @if (data) {
+              @for (user of data; track user.id) {
+                <div class="user-display">
+                  <mat-card class="user-card">
+                    <mat-card-header>
+                      <div mat-card-avatar>
+                        <img
+                          [src]="'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.name) + '&background=random&size=128'"
+                          [alt]="user.name"
+                          class="avatar"
+                        >
+                      </div>
+                      <mat-card-title>{{ user.name }}</mat-card-title>
+                      <mat-card-title>{{ user.email }}</mat-card-title>
+                      <mat-card-subtitle>{{ '@' }}{{ user.username }}</mat-card-subtitle>
+                    </mat-card-header>
+                  </mat-card>
+                </div>
+              } @empty {
+                <li class="no-data">Nothing to show</li>
+              }
+            }
+
+
+
+            @if (users.isLoading()) {
+              <div class="loading-state">
+                <mat-icon>hourglass_empty</mat-icon>
+                Loading user data...
+              </div>
+            }
+            @if (users.error()) {
+              <div class="error-state">
+                <mat-icon>error</mat-icon>
+                <p>Error: {{ users.error() }}</p>
+              </div>
+            }
+          </mat-card-content>
+        </mat-card>
+
+        <h3>Key Features</h3>
+        <mat-card>
+          <mat-card-content>
+            <ul>
+              <li>
+                <strong>Signal-Driven Resource:</strong>
+                Uses an Angular <code>signal()</code> to drive the <code>resource()</code> reloads whenever the search
+                query changes.
+              </li>
+              <li>
+                <strong>Abortable HTTP Requests:</strong>
+                Each search request is abortable to prevent race conditions when typing quickly.
+              </li>
+              <li>
+                <strong>Dynamic UI Updates:</strong>
+                Users list updates automatically in real-time as you type, without manual refresh.
+              </li>
+              <li>
+                <strong>Local Resource Updates:</strong>
+                Supports adding a new user to the list or clearing the resource without hitting the API again.
+              </li>
+              <li>
+                <strong>Loading & Error Handling:</strong>
+                Shows a loading indicator while fetching users and a friendly error message if the request fails.
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
