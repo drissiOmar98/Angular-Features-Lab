@@ -1,0 +1,162 @@
+:host {
+  display: contents;
+
+  .demo-section {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  mat-card-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  mat-card-subtitle {
+    font-size: 15px;
+    color: #2196f3;
+    font-weight: 500;
+  }
+
+  .mat-mdc-card-avatar {
+    margin-right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  mat-card-content {
+    p {
+      margin: 8px 0;
+      font-size: 14px;
+      line-height: 1.5;
+      strong {
+        color: #333;
+        font-weight: 600;
+      }
+    }
+
+    .bio-section {
+      margin: 20px 0;
+      padding: 16px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #2196f3;
+      h4 {
+        margin: 0 0 12px 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+      }
+      p {
+        margin: 6px 0;
+        font-size: 14px;
+        line-height: 1.5;
+        strong {
+          color: #2196f3;
+          font-weight: 600;
+        }
+      }
+      .github-stats {
+        display: flex;
+        gap: 16px;
+        margin-top: 12px;
+        flex-wrap: wrap;
+        .stat {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 13px;
+          color: #666;
+          font-weight: 500;
+          background: white;
+          padding: 6px 12px;
+          border-radius: 12px;
+          border: 1px solid #e0e0e0;
+          mat-icon {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+            color: #2196f3;
+          }
+        }
+      }
+    }
+
+    .profile-links {
+      margin-top: 16px;
+      text-align: center;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      .github-link {
+        background: linear-gradient(45deg, #333, #24292e);
+        color: white;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        mat-icon {
+          margin-right: 8px;
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+      .copy-username-btn {
+        background: linear-gradient(45deg, #ff9800, #f57c00);
+        color: white;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
+        }
+        mat-icon {
+          margin-right: 8px;
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  .loading-state, .error-state {
+    text-align: center;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .loading-state {
+    color: #2196f3;
+  }
+
+  .error-state {
+    color: #f44336;
+  }
+}
+
+:host {
+  display: contents;
+  // Add unique, demo-specific styles for resource-api-example4 here if needed
+}

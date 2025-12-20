@@ -1,0 +1,114 @@
+<div class="example-container">
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/resource-api">Go to List</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example5'">Prev</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example7'">Next</button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Demo">
+      <div class="content-area">
+        <h2>Resource API Example 4: GitHub User Data with resource()</h2>
+        <p>This example demonstrates fetching random GitHub user profiles using the resource API with real-time data and
+          profile interactions.</p>
+      </div>
+
+      <div class="demo-section">
+        <h3>Demo Content</h3>
+        <mat-card>
+          <mat-card-content>
+            <div class="demo-actions">
+              <button mat-raised-button color="primary" (click)="userSignal.reload()">
+                <mat-icon>refresh</mat-icon>
+                Fetch Random GitHub User
+              </button>
+            </div>
+
+            @if (userSignal.value(); as user) {
+              <div class="user-display">
+                <mat-card class="user-card">
+                  <mat-card-header>
+                    <div mat-card-avatar>
+                      <img [src]="user.avatar_url" [alt]="user.name || user.login" class="avatar">
+                    </div>
+                    <mat-card-title>{{ user.name || user.login }}</mat-card-title>
+                    <mat-card-subtitle>{{ '@' }}{{ user.login }}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    @if (user.company) {
+                      <p><strong>Company:</strong> {{ user.company }}</p>
+                    }
+                    @if (user.location) {
+                      <p><strong>Location:</strong> {{ user.location }}</p>
+                    }
+
+                    @if (user.bio || user.public_repos || user.followers) {
+                      <div class="bio-section">
+                        <h4>GitHub Stats</h4>
+                        @if (user.bio) {
+                          <p><strong>Bio:</strong> {{ user.bio }}</p>
+                        }
+                        @if (user.public_repos || user.followers || user.following) {
+                          <div class="github-stats">
+                            @if (user.public_repos) {
+                              <span class="stat">
+                                 <mat-icon>code</mat-icon>
+                                {{ user.public_repos }} repos
+                              </span>
+                            }
+                            @if (user.followers) {
+                              <span class="stat">
+                                <mat-icon>people</mat-icon>
+                                {{ user.followers }} followers
+                              </span>
+                            }
+                            @if (user.following) {
+                              <span class="stat"><mat-icon>person_add</mat-icon>
+                                {{ user.following }} following
+                              </span>
+                            }
+                          </div>
+                        }
+
+
+                      </div>
+                    }
+
+
+                    <div class="profile-links">
+                      <a mat-raised-button color="primary" [href]="user.html_url" target="_blank" class="github-link">
+                        <mat-icon>open_in_new</mat-icon>
+                        View GitHub Profile
+                      </a>
+                      <button mat-raised-button color="accent" (click)="copyUsername(user.login)"
+                              class="copy-username-btn">
+                        <mat-icon>content_copy</mat-icon>
+                        Copy Username
+                      </button>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            }
+
+
+            @if (userSignal.isLoading()) {
+              <div class="loading-state">
+                <mat-icon>hourglass_empty</mat-icon>
+                Loading user data...
+              </div>
+            }
+
+            @if (userSignal.error()) {
+              <div class="error-state">
+                <mat-icon>error</mat-icon>
+                Error loading user data
+              </div>
+            }
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
