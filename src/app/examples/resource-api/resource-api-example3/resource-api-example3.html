@@ -1,0 +1,133 @@
+<div class="example-container">
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/resource-api">Go to List</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example1'">Prev</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example3'">Next</button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Demo">
+      <div class="content-area">
+        <h2>Resource API Example: Fetch Posts with httpResource()</h2>
+        <p> This example demonstrates Angular’s <strong>httpResource()</strong> API for simplified
+          HTTP data fetching. It uses a reactive URL signal to fetch post data from the
+          JSONPlaceholder API with built-in loading and error handling.</p>
+      </div>
+
+      <div class="demo-section">
+        <h3>User Data Simulation with resource()</h3>
+        <mat-card>
+          <mat-card-content>
+
+
+
+            <div class="controls">
+              <button mat-raised-button color="primary" (click)="postId.set(1)">
+                <mat-icon>refresh</mat-icon>
+                Load Post 1
+              </button>
+
+              <button mat-raised-button color="primary" (click)="postId.set(2)">
+                <mat-icon>refresh</mat-icon>
+                Load Post 2
+              </button>
+
+              <button mat-raised-button color="primary" (click)="postId.set(3)">
+                <mat-icon>refresh</mat-icon>
+                Load Post 3
+              </button>
+
+              <button mat-raised-button color="warn" (click)="postId.set(0)">
+                <mat-icon>restart_alt</mat-icon>
+                Reset
+              </button>
+
+            </div>
+
+
+            @if (postResource.isLoading()) {
+              <div class="loading-state">
+                <mat-icon>cached</mat-icon>
+                <p>Loading post...</p>
+              </div>
+            } @else if (postResource.status() === 'error') {
+              <div class="error-state">
+                <mat-icon>error</mat-icon>
+                <p>Error: {{ postResource.error()?.message || 'Failed to load post' }}</p>
+              </div>
+            } @else {
+              @if (postResource.value(); as post) {
+                <div class="post-display">
+                  <mat-card class="result-card">
+                    <mat-card-header>
+                      <mat-card-title>
+                        <mat-icon>article</mat-icon>
+                        Post Details
+                      </mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                      <p class="post-text"><strong>Title:</strong> {{ post.title }}</p>
+                      <p class="post-text"><strong>Body:</strong> {{ post.body }}</p>
+
+                      <div class="post-meta">
+                        <p class="post-text"><strong>Post ID:</strong> {{ post.id }}</p>
+                        <p class="post-text"><strong>User ID:</strong> {{ post.userId }}</p>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              }
+
+
+
+            }
+          </mat-card-content>
+        </mat-card>
+
+        <h3>Key Features</h3>
+        <mat-card>
+          <mat-card-content>
+            <ul>
+              <li>
+                <strong>Reactive HTTP Requests:</strong>
+                Automatically triggers requests when the post ID changes
+              </li>
+              <li>
+                <strong>Built-in Loading & Error States:</strong>
+                No manual subscription or state management required
+              </li>
+              <li>
+                <strong>URL-driven Resource:</strong>
+                Uses a computed signal to dynamically build the request URL
+              </li>
+              <li>
+                <strong>Type-safe HTTP Responses:</strong>
+                Strongly typed API responses with TypeScript generics
+              </li>
+              <li>
+                <strong>Minimal Boilerplate:</strong>
+                Clean, declarative data fetching without RxJS complexity
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="TS">
+      <div class="code-example">
+        <div class="code-header">
+          <div class="window-controls">
+            <div class="control close"></div>
+            <div class="control minimize"></div>
+            <div class="control maximize"></div>
+          </div>
+          <span class="file-name">resource-example3.component.ts</span>
+        </div>
+        <pre><code>{{ codeExample }}</code></pre>
+      </div>
+    </mat-tab>
+
+
+  </mat-tab-group>
+</div>
