@@ -1,0 +1,125 @@
+<div class="example-container">
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/resource-api">Go to List</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example1'">Prev</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example3'">Next</button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Demo">
+      <div class="content-area">
+        <h2>Resource API Example 4: RxJS Counter with resource()</h2>
+        <p> RxJS observables integration with resource API. This example shows
+          a reactive counter that updates every second using observables.</p>
+      </div>
+
+      <div class="demo-section">
+        <h3>RxJS Counter Simulation using resource()</h3>
+        <mat-card>
+          <mat-card-content>
+
+            <div class="controls">
+              <button mat-raised-button color="primary" (click)="isActive.set(true)" [disabled]="isActive()">
+                <mat-icon>play_arrow</mat-icon>
+                Start Counter
+              </button>
+
+              <button mat-raised-button color="accent" (click)="isActive.set(false)" [disabled]="!isActive()">
+                <mat-icon>pause</mat-icon>
+                Stop Counter
+              </button>
+
+              <button mat-raised-button color="warn" (click)="resetCounter()">
+                <mat-icon>restart_alt</mat-icon>
+                Reset
+              </button>
+            </div>
+
+
+
+            @if (counterResource.isLoading()) {
+              <div class="loading-state">
+                <mat-icon>cached</mat-icon>
+                <p>Initializing counter...</p>
+              </div>
+            } @if (counterResource.status() === 'error') {
+              <div class="error-state">
+                <mat-icon>error</mat-icon>
+                <p>Error: {{ counterResource.error()?.message }}</p>
+              </div>
+          } @else {
+            @if (counterResource.value(); as data) {
+              <div class="counter-display-wrapper">
+                <mat-card class="counter-card">
+                  <mat-card-header>
+                    <mat-card-title>
+                      <mat-icon>timer</mat-icon>
+                      Counter Details
+                    </mat-card-title>
+                  </mat-card-header>
+
+                  <mat-card-content>
+                    <div class="counter-main">
+                      <div class="counter-value">{{ data.count }}</div>
+                      <div class="counter-label">Current Count</div>
+                    </div>
+
+                    <p class="counter-timestamp">
+                      <strong>Last updated:</strong>
+                      {{ formatTimestamp(data.timestamp) }}
+                    </p>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            }
+
+
+          }
+          </mat-card-content>
+        </mat-card>
+
+        <h3>Key Features</h3>
+        <mat-card>
+          <mat-card-content>
+            <ul>
+              <li>
+                <strong>RxJS Integration:</strong>
+                Uses <code>interval()</code> to emit values every second with proper cleanup.
+              </li>
+              <li>
+                <strong>Signal → Resource Bridge:</strong>
+                A signal-driven ticker triggers <code>resource()</code> reloads automatically.
+              </li>
+              <li>
+                <strong>Effect Lifecycle Safety:</strong>
+                Subscriptions are safely managed using <code>effect()</code> and
+                <code>takeUntilDestroyed()</code>.
+              </li>
+              <li>
+                <strong>Derived State Management:</strong>
+                Counter value is stored in a signal and consumed declaratively by
+                <code>resource()</code>.
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </mat-tab>
+    <mat-tab label="TS">
+      <div class="code-example">
+        <div class="code-header">
+          <div class="window-controls">
+            <div class="control close"></div>
+            <div class="control minimize"></div>
+            <div class="control maximize"></div>
+          </div>
+          <span class="file-name">resource-example4.component.ts</span>
+        </div>
+        <pre><code>{{ codeExample }}</code></pre>
+      </div>
+    </mat-tab>
+
+
+  </mat-tab-group>
+</div>
