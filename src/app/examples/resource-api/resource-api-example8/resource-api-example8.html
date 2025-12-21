@@ -1,0 +1,119 @@
+<div class="example-container">
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/resource-api">Go to List</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example4'">Prev</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example9'">Next</button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Demo">
+      <div class="content-area">
+        <h2>rxResource() Streaming Example</h2>
+        <p> RxJS observables integration with resource API. This example demonstrates
+          using a real WebSocket API (CoinCap) with the resource API's stream option
+          for real-time cryptocurrency price updates.</p>
+      </div>
+
+      <div class="demo-section">
+        <h3>Demo Content</h3>
+        <mat-card>
+          <mat-card-content>
+
+            <div class="controls">
+              <button mat-raised-button color="primary" (click)="isActive.set(true)" [disabled]="isActive()">
+                <mat-icon>power</mat-icon>
+                Connect WebSocket
+              </button>
+
+              <button mat-raised-button color="warn" (click)="isActive.set(false)" [disabled]="!isActive()">
+                <mat-icon>power_off</mat-icon>
+                Disconnect
+              </button>
+            </div>
+
+            @if (cryptoResource.value(); as data) {
+              <div class="Crypto-display">
+                <mat-card class="user-card crypto-card">
+
+                  <!-- Header -->
+                  <mat-card-header>
+                    <div mat-card-avatar class="crypto-avatar">
+                      <mat-icon>currency_bitcoin</mat-icon>
+                    </div>
+
+                    <mat-card-title>Live Crypto Prices</mat-card-title>
+                    <mat-card-subtitle>
+                      Updated at {{ formatTimestamp(data.timestamp) }}
+                    </mat-card-subtitle>
+                  </mat-card-header>
+
+                  <!-- Content -->
+                  <mat-card-content>
+                    <div class="crypto-prices">
+                      <div class="crypto-item">
+                        <strong>Bitcoin (BTC):</strong>
+                        <span>{{ formatPrice(data.bitcoin) }}</span>
+                      </div>
+
+                      <div class="crypto-item">
+                        <strong>Ethereum (ETH):</strong>
+                        <span>{{ formatPrice(data.ethereum) }}</span>
+                      </div>
+                    </div>
+                  </mat-card-content>
+
+                </mat-card>
+              </div>
+            }
+
+
+
+
+            @if (cryptoResource.isLoading()) {
+              <div class="loading-state">
+                <mat-icon>hourglass_empty</mat-icon>
+                Connecting to WebSocket...
+              </div>
+            }
+
+            @if (cryptoResource.status() === 'error') {
+              <div class="error-state">
+                <mat-icon>error</mat-icon>
+                Error: {{ cryptoResource.error()?.message || 'Failed to connect to WebSocket' }}
+              </div>
+            }
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="TS">
+      <div class="code-example">
+        <div class="code-header">
+          <div class="window-controls">
+            <div class="control close"></div>
+            <div class="control minimize"></div>
+            <div class="control maximize"></div>
+          </div>
+          <span class="file-name">resource-example8.component.ts</span>
+        </div>
+        <pre><code>{{ codeExample }}</code></pre>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,170 @@
+
+
+
+
+
+
+
+
+
+
+// Only unique, demo-specific styles for resource-api-example1 should remain here.
+:host{
+  display: contents;
+  .demo-section {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .crypto-prices {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .crypto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+  }
+
+  .crypto-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .crypto-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #667eea;
+  }
+
+  .timestamp {
+    color: #999;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    background: #fff3cd;
+    color: #856404;
+    &.completed {
+      background: #e8f5e8;
+      color: #2e7d2e;
+    }
+  }
+
+  .loading-state, .error-state {
+    text-align: center;
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+  }
+
+  .loading-state {
+    color: #2196f3;
+  }
+
+  .error-state {
+    color: #f44336;
+  }
+}
+
+
+.code-example {
+  background: #1e1e1e;
+  border-radius: 8px;
+  margin-top: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+
+  .code-header {
+    background: #2d2d2d;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #3e3e3e;
+
+    .window-controls {
+      display: flex;
+      gap: 0.5rem;
+
+      .control {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+
+        &.close {
+          background: #ff5f56;
+        }
+
+        &.minimize {
+          background: #ffbd2e;
+        }
+
+        &.maximize {
+          background: #27c93f;
+        }
+      }
+    }
+
+    .file-name {
+      color: #858585;
+      font-size: 0.85rem;
+      margin-left: 0.5rem;
+      font-family: 'Courier New', monospace;
+    }
+  }
+
+  h3 {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    background: #2d2d2d;
+    color: #d4d4d4;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-bottom: 1px solid #3e3e3e;
+    display: none;
+  }
+
+  pre {
+    margin: 0;
+    padding: 1.5rem;
+    overflow-x: auto;
+    background: #1e1e1e;
+
+    code {
+      font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #d4d4d4;
+      display: block;
+    }
+  }
+}
