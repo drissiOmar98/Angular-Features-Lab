@@ -9,8 +9,8 @@ export const HTTP_RESOURCE_EXAMPLES: ExampleModel[] = [
     routerLink: './example3',
   },
   {
-    title: 'Pagination with httpResource',
-    content: 'Discover httpResource() with pagination functionality using dynamic parameters for fetching paginated todo data. Modern approach to data navigation.',
-    routerLink: './example4',
-  },
+    title: 'Country Info with httpResource',
+    content: 'Fetch and display live country information (name, capital, region, population, flag) using httpResource and the REST Countries API. Select a country to view its details in real time.',
+    routerLink: './example9',
+  }
 ];
