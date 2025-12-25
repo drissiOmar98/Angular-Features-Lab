@@ -1,0 +1,69 @@
+<div class="example-container">
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/resource-api">Go to List</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example3'">Prev</button>
+    <button mat-stroked-button color="primary" [routerLink]="'/resource-api/example9'">Next</button>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Demo">
+      <div class="content-area">
+        <h2>Resource API Example 6: httpResource with Chuck Norris API</h2>
+        <p>This example demonstrates using httpResource to fetch random jokes from an external API with simple URL-based resource loading.</p>
+      </div>
+
+      <div class="demo-section">
+        <h3>Demo Content</h3>
+        <mat-card>
+          <mat-card-content>
+            <div class="demo-actions">
+              <button mat-raised-button color="primary" (click)="jokeSignal.reload()">
+                <mat-icon>refresh</mat-icon>
+                Get New Joke
+              </button>
+            </div>
+
+            @if (jokeSignal.value(); as joke) {
+              <div class="joke-display">
+                <mat-card class="joke-card">
+                  <mat-card-header>
+                    <mat-card-title>
+                      <mat-icon>mood</mat-icon>
+                      Chuck Norris Joke
+                    </mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <p class="joke-text">{{$any(joke).value}}</p>
+                    <div class="joke-meta">
+                      <span class="joke-id">ID: {{$any(joke).id}}</span>
+                      <span class="joke-url">
+                        <a [href]="$any(joke).url" target="_blank">
+                          <mat-icon>link</mat-icon>
+                          View Original
+                        </a>
+                      </span>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            }
+
+            @if (jokeSignal.isLoading()) {
+              <div class="loading-state">
+                <mat-icon>hourglass_empty</mat-icon>
+                Loading a new joke...
+              </div>
+            }
+
+            @if (jokeSignal.error()) {
+              <div class="error-state">
+                <mat-icon>error</mat-icon>
+                Error loading joke
+              </div>
+            }
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
