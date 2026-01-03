@@ -12,6 +12,10 @@ export const routes: Routes = [
     loadChildren: () => import('./examples/resource-api/resource-api.routes'),
   },
   {
+    path: 'linked-signal',
+    loadChildren: () => import('./examples/linked-signal/linked-signal.routes'),
+  },
+  {
     path: '**',
     redirectTo: ''
   },
