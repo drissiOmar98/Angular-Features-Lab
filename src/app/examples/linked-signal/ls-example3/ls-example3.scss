@@ -1,0 +1,59 @@
+
+:host {
+  display: contents;
+
+  .content-area {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: transparent;
+    padding: 0 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 1rem;
+      text-align: center;
+      position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+        border-radius: 2px;
+      }
+    }
+    > p {
+      font-size: 1.1rem;
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 3rem;
+      line-height: 1.6;
+      max-width: 700px;
+    }
+  }
+
+  .pricing-container {
+    background: rgba(255,255,255,0.95);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(59,130,246,0.07), 0 1.5px 8px rgba(139,92,246,0.04);
+    padding: 2.5rem 2rem 2rem 2rem;
+    margin: 0 auto;
+    max-width: 600px;
+    transition: box-shadow 0.3s;
+  }
+
+  .pricing-container h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #8b5cf6;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+}
