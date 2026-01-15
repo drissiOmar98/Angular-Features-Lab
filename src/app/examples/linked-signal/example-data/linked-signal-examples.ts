@@ -13,5 +13,10 @@ export const LINKED_SIGNAL_EXAMPLES: ExampleModel[] = [
     content: 'Showcase product filtering with category and price, and auto-reset pagination using linkedSignal. Page resets to 1 on filter change, but allows manual navigation.',
     routerLink: '/linked-signal/example2',
   },
+  {
+    title: 'Unit Converter (Celsius ↔ Fahrenheit)',
+    content: 'A two-way unit converter using linkedSignal for Celsius and Fahrenheit. Demonstrates real-world two-way data binding.',
+    routerLink: '/linked-signal/example3',
+  },
 
 ];
