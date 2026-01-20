@@ -48,6 +48,58 @@ describe('WeatherWidget', () => {
   });
 
 
+  /**
+   * ⚠️ Legacy test – Native <select> based implementation
+   *
+   * This test was valid when the WeatherWidget used a native HTML <select>.
+   * It relies on:
+   *  - Setting `nativeElement.value`
+   *  - Dispatching a DOM `change` event
+   *
+   * After migrating to Angular Material's `mat-select`, this approach no longer works because:
+   *  - `mat-select` does NOT emit DOM `change` events
+   *  - It emits a typed Angular event: `selectionChange`
+   *  - The value is provided via `$event.value`, not `event.target.value`
+   *
+   * Keeping this test commented serves as documentation of a common
+   * testing pitfall when migrating from native form controls to
+   * Angular Material components.
+   *
+   * ✅ Correct approach: interact with `MatSelect` or use
+   * `MatSelectHarness` and trigger `selectionChange`.
+   */
+ /* it(`should emit (timeSpanChange) when time span changes`, async () => {
+    await fixture.whenStable();
+    let expectedOutput: string | undefined;
+    component.timeSpanChange.subscribe((period) => {
+      expectedOutput = period;
+    })
+    const selectEl = fixture.debugElement.query(
+      By.css('[data-testId="time-span"]')
+    );
+    selectEl.nativeElement.value = 'tomorrow';
+    selectEl.nativeElement.dispatchEvent(new Event('change'));
+    expect(expectedOutput).toBe('tomorrow');
+  });*/
+
+  it(`should emit (timeSpanChange) when time span changes`, async () => {
+    let expectedOutput: string | undefined;
+
+    component.timeSpanChange.subscribe(period => {
+      expectedOutput = period;
+    });
+
+    const matSelectDebugEl = fixture.debugElement.query(
+      By.directive(MatSelect)
+    );
+
+    const matSelect = matSelectDebugEl.componentInstance as MatSelect;
+
+    matSelect.value = 'tomorrow';
+    matSelect.selectionChange.emit({value: 'tomorrow'} as any);
+
+    expect(expectedOutput).toBe('tomorrow');
+  });
 
 
 });
