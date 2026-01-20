@@ -16,6 +16,10 @@ export const routes: Routes = [
     loadChildren: () => import('./examples/linked-signal/linked-signal.routes'),
   },
   {
+    path: 'testing',
+    loadChildren: () => import('./examples/testing/testing.routes'),
+  },
+  {
     path: '**',
     redirectTo: ''
   },
