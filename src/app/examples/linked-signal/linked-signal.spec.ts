@@ -1,23 +1,24 @@
+import { beforeEach, describe, expect, it } from "vitest";
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinkedSignal } from './linked-signal';
 
 describe('LinkedSignal', () => {
-  let component: LinkedSignal;
-  let fixture: ComponentFixture<LinkedSignal>;
+    let component: LinkedSignal;
+    let fixture: ComponentFixture<LinkedSignal>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LinkedSignal]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [LinkedSignal]
+        })
+            .compileComponents();
 
-    fixture = TestBed.createComponent(LinkedSignal);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+        fixture = TestBed.createComponent(LinkedSignal);
+        component = fixture.componentInstance;
+        await fixture.whenStable();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
