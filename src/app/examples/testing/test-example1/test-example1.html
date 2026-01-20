@@ -1,0 +1,44 @@
+<div class="example-container">
+
+  <!-- Navigation -->
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/testing">
+      Go to List
+    </button>
+    <button mat-stroked-button color="primary" disabled>
+      Prev
+    </button>
+    <button mat-stroked-button color="primary" disabled>
+      Next
+    </button>
+  </div>
+
+  <mat-tab-group>
+
+    <mat-tab label="Demo">
+      <div class="content-area">
+        <h2>Testing Example N1: Weather Widget</h2>
+        <p>
+          This example demonstrates <strong>standalone component testing</strong>
+          using <code>input</code>, <code>output</code>, signals, and
+          Angular control flow (<code>&#64;if</code>).
+        </p>
+      </div>
+
+      <div class="demo-section">
+        <mat-card>
+          <mat-card-content>
+
+            <!-- Demo -->
+            <app-weather-widget
+              [data]="widgetData()"
+              (timeSpanChange)="updatedWidget($event)">
+            </app-weather-widget>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

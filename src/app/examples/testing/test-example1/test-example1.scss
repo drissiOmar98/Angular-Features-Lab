@@ -1,0 +1,18 @@
+:host {
+  display: contents;
+
+  .demo-section {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  mat-card {
+    min-width: 320px;
+    max-width: 420px;
+    padding: 16px;
+    border-radius: 14px;
+    background: #f5f7fa;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+}
