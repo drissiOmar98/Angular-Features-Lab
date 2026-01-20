@@ -1,0 +1,42 @@
+<mat-card class="weather-card">
+
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>cloud</mat-icon>
+      Current Weather
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <div class="widget-header">
+      <mat-form-field appearance="fill">
+        <mat-label>Time Span</mat-label>
+        <mat-select
+          data-testId="time-span"
+          (selectionChange)="onTimeSpanChanges($event.value)"
+        >
+          <mat-option value="today">Today</mat-option>
+          <mat-option value="tomorrow">Tomorrow</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    @if (data()) {
+      <div class="widget-content">
+        @if (data()?.location) {
+          <div class="location">{{ data()?.location }}</div>
+          <div class="sky-condition">{{ data()?.sky }}</div>
+          <div class="temperature">{{ data()?.temperature }}°C</div>
+        } @else {
+          <p data-testId="no-location" class="no-location-section">
+            Location isn't defined...
+          </p>
+        }
+      </div>
+    } @else {
+      <p class="no-content">No data to display...</p>
+    }
+
+  </mat-card-content>
+</mat-card>

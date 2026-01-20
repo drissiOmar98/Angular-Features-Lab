@@ -1,0 +1,49 @@
+.weather-card {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  border-radius: 16px;
+  background: #f5f7fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+}
+
+.widget-header {
+  margin-bottom: 16px;
+}
+
+.widget-content {
+  text-align: center;
+}
+
+.location {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.sky-condition {
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.temperature {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.no-location-section {
+  color: #ff9800;
+  font-size: 14px;
+}
+
+.no-content {
+  text-align: center;
+  color: #9e9e9e;
+}
