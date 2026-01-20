@@ -1,0 +1,213 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 4px;
+      background: linear-gradient(45deg, #ff0096, #00ffff);
+      border-radius: 2px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    }
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+  }
+}
+
+.card-item {
+  text-decoration: none;
+  display: block;
+  position: relative;
+  transform-style: preserve-3d;
+
+  mat-card {
+    height: 100%;
+    min-height: 180px;
+    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
+    box-shadow:
+      0 15px 50px rgba(255, 0, 150, 0.2),
+      0 8px 25px rgba(0, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background-size: 200% 100%;
+      opacity: 0;
+      transition: all 0.5s ease;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: neonFlow 2s linear infinite;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 28px;
+      opacity: 0;
+      transition: all 0.7s ease;
+      z-index: -1;
+      filter: blur(4px);
+    }
+
+    &:hover {
+      transform: translateY(-25px) scale(1.08) rotateX(5deg) rotateZ(1deg);
+      box-shadow:
+        0 50px 120px rgba(255, 0, 150, 0.4),
+        0 25px 60px rgba(0, 255, 255, 0.3),
+        0 0 0 2px rgba(255, 255, 0, 0.5),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+      border-color: rgba(0, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.12);
+
+      &::before {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+
+      &::after {
+        opacity: 1;
+        transform: scale(1.08);
+      }
+    }
+  }
+
+  .mat-mdc-card-header {
+    padding: 2rem 2rem 1rem;
+    background: transparent;
+    border: none;
+    flex-shrink: 0;
+
+    .mat-mdc-card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0;
+      transition: all 0.3s ease;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  .mat-mdc-card-content {
+    padding: 0 2rem 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    p {
+      margin: 0 0 1rem 0;
+      font-size: 1rem;
+      line-height: 1.7;
+      transition: all 0.3s ease;
+      font-weight: 400;
+      flex-grow: 1;
+    }
+
+    .demo-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.5rem;
+
+      .demo-text {
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .demo-arrow {
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        transform: translateX(0);
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+      }
+    }
+  }
+
+}
+
+@keyframes neonFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  .card-item mat-card {
+    min-height: 160px;
+
+    &:hover {
+      transform: translateY(-10px) scale(.55);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
