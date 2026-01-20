@@ -21,7 +21,21 @@ describe('WeatherWidget', () => {
     };
   });
 
+  it(`should render weather data if provided`, async () => {
+    fixture.componentRef.setInput('data', widgetTestingData);
+    await fixture.whenStable();
+    const locationEl = fixture.debugElement.query(By.css('.location'));
+    const skyEl = fixture.debugElement.query(By.css('.sky-condition'));
+    const temperatureEl = fixture.debugElement.query(By.css('.temperature'));
 
+    expect(locationEl.nativeElement.textContent).toContain(
+      widgetTestingData?.location
+    );
+    expect(skyEl.nativeElement.textContent).toContain(widgetTestingData?.sky);
+    expect(temperatureEl.nativeElement.textContent).toContain(
+      `${widgetTestingData?.temperature}`
+    );
+  });
 
 
 
