@@ -37,6 +37,17 @@ describe('WeatherWidget', () => {
     );
   });
 
+  it(`should show "no-location" placeholder if no location provided`, async () => {
+    widgetTestingData.location = undefined;
+    fixture.componentRef.setInput('data', widgetTestingData);
+    await fixture.whenStable();
+    const noLocationEl = fixture.debugElement.query(
+      By.css('[data-testId="no-location"]')
+    );
+    expect(noLocationEl).toBeTruthy();
+  });
+
+
 
 
 });
