@@ -20,6 +20,10 @@ export const routes: Routes = [
     loadChildren: () => import('./examples/testing/testing.routes'),
   },
   {
+    path: 'signal-forms',
+    loadChildren: () => import('./examples/signal-forms/signal-forms.routes'),
+  },
+  {
     path: '**',
     redirectTo: ''
   },
