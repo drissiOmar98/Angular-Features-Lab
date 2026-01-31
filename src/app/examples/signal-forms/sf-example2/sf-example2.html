@@ -1,0 +1,95 @@
+<div class="example-container">
+
+  <!-- Navigation Bar -->
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/signal-forms">Go to List</button>
+    <button mat-stroked-button color="primary" routerLink="/signal-forms/example1">Prev</button>
+    <button mat-stroked-button color="primary" routerLink="/signal-forms/example3">Next</button>
+  </div>
+
+  <mat-tab-group class="main-tabs">
+
+    <mat-tab label="Demo">
+
+      <!-- Header -->
+      <div class="page-header">
+        <h1>Signal Forms – Registration Demo</h1>
+        <p>
+          Demonstrates a fully functional signal-based registration form using a schema-driven architecture.
+          Features include multi-field validation with <code>validateTree</code>, conditional visibility using <code>hidden</code>,
+          and reactive, writable signals for instant UI updates and optimized form management.
+        </p>
+      </div>
+
+      <div class="demo-section">
+
+        <!-- Form Card -->
+        <mat-card class="form-card form-card-modern">
+          <mat-card-content>
+            <form class="register-form" autocomplete="off">
+              <h2 class="form-title">Create Account</h2>
+
+              <!-- Email -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" [field]="registrationForm.email"/>
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+
+              <!-- Password -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" [field]="registrationForm.password"/>
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+
+              <!-- Confirm Password -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput type="password" [field]="registrationForm.confirmPassword"/>
+                @for (error of registrationForm.confirmPassword().errors(); track error.kind) {
+                  <mat-error>{{ error.message }}</mat-error>
+                }
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+
+              <!-- Country -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Country</mat-label>
+                <mat-select [field]="registrationForm.country">
+                  <mat-option value="Poland">Poland</mat-option>
+                  <mat-option value="Greece">Greece</mat-option>
+                  <mat-option value="US">US</mat-option>
+                </mat-select>
+                <mat-icon matSuffix>public</mat-icon>
+              </mat-form-field>
+
+              <!-- State (conditionally visible) -->
+              @if (!registrationForm.state().hidden()) {
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>State</mat-label>
+                  <input matInput type="text" [field]="registrationForm.state"/>
+                  <mat-icon matSuffix>location_on</mat-icon>
+                </mat-form-field>
+              }
+
+              <!-- Actions -->
+              <div class="actions">
+                <button mat-raised-button color="primary" type="button" [disabled]="registrationForm().invalid()">
+                  Register
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+
+
