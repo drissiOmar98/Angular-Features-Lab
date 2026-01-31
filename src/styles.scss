@@ -74,6 +74,8 @@ app-root {
   }
 
 
+
+
   /* Entire tab group box */
   .mat-tab-group {
     border-radius: 8px;
@@ -202,3 +204,9 @@ app-root {
     }
   }
 }
+
+// Style to fix the weird border with angular material + tailwindcss
+.mdc-notched-outline__notch {
+  border-right: none !important;
+}
+
