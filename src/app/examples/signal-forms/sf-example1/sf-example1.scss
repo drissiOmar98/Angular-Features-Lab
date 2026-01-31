@@ -1,0 +1,132 @@
+:host {
+  display: block;
+    min-height: 100vh;
+  background: linear-gradient(135deg, #f8fbff, #eef3f9);
+  padding: 2rem;
+  .demo-section {
+    margin-top: 2rem;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    padding-bottom: 2rem;
+  }
+  .demo-section mat-card {
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-radius: 8px;
+  }
+}
+
+
+/* Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #666;
+    max-width: 600px;
+    margin: auto;
+  }
+}
+
+/* Demo Layout */
+.demo-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Cards */
+mat-card {
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.submit-btn {
+  margin-top: 1rem;
+  height: 45px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Preview */
+.preview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.preview-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.valid {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.invalid {
+  color: #d32f2f;
+  font-weight: 600;
+}
+
+.json-preview {
+  background: #f5f7fa;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  overflow-x: auto;
+}
+
+/* Features */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+
+  li {
+    padding: 0.4rem 0;
+    font-size: 0.95rem;
+  }
+}
+
+.features-desc {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Tabs */
+.main-tabs {
+  background: transparent;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+}

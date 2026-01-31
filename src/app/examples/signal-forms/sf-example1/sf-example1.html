@@ -1,0 +1,159 @@
+<div class="example-container">
+
+  <!-- Navigation Bar -->
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/signal-forms">Go to List</button>
+    <button mat-stroked-button color="primary" disabled>Prev</button>
+    <button mat-stroked-button color="primary" routerLink="/signal-forms/example2">Next</button>
+  </div>
+
+  <mat-tab-group class="main-tabs">
+
+    <mat-tab label="Demo">
+
+      <!-- Header -->
+      <div class="page-header">
+        <h1>Signal Forms – Login Demo</h1>
+        <p>
+          Demonstrates a fully functional signal-based login form with schema-driven structure,
+          built-in validation, and optimized submission state management.
+
+        </p>
+      </div>
+
+      <div class="demo-section">
+
+        <!-- Form Card -->
+        <mat-card class="form-card">
+
+
+          <mat-card-content>
+
+            <form class="login-form">
+
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email</mat-label>
+                <input
+                  [field]="loginForm.email"
+                  matInput
+                  type="email"
+                  placeholder="Enter your email"
+                  autocomplete="email"
+                />
+                <mat-icon matSuffix>email</mat-icon>
+                @if (loginForm.email().touched()) {
+                  @for (error of loginForm.email().errors(); track error.kind) {
+                    <mat-error>{{ error.message }}</mat-error>
+                  }
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Password</mat-label>
+                <input
+                  [field]="loginForm.password"
+                  matInput
+                  type="password"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                />
+                <mat-icon matSuffix>lock</mat-icon>
+                @if (loginForm.password().touched()) {
+                  @for (error of loginForm.password().errors(); track error.kind) {
+                    <mat-error>{{ error.message }}</mat-error>
+                  }
+                }
+              </mat-form-field>
+
+              <button
+                [disabled]="loginForm().invalid()"
+                mat-raised-button
+                color="primary"
+                class="submit-btn"
+                type="submit"
+              >
+                Login
+              </button>
+
+            </form>
+
+          </mat-card-content>
+
+        </mat-card>
+
+        <!-- Live Preview -->
+        <mat-card class="preview-card">
+
+          <mat-card-header>
+            <mat-card-title>📊 Live Form State</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="preview-content">
+
+            <div class="preview-item">
+              <strong>Email:</strong>
+              <span>{{ loginForm().value().email }}</span>
+            </div>
+
+            <div class="preview-item">
+              <strong>Password:</strong>
+              <span>{{ loginForm().value().password }}</span>
+            </div>
+
+            <div class="preview-item">
+              <strong>Valid:</strong>
+              <span
+                [class.valid]="loginForm().valid()"
+                [class.invalid]="!loginForm().valid()"
+              >
+                {{ loginForm().valid() }}
+              </span>
+            </div>
+
+            <div class="preview-item">
+              <strong>Touched:</strong>
+              {{ loginForm().touched() }}
+            </div>
+
+            <pre class="json-preview">
+{{ loginForm().value() | json }}
+            </pre>
+
+          </mat-card-content>
+
+        </mat-card>
+
+        <!-- Features -->
+        <mat-card class="features-card">
+
+          <mat-card-header>
+            <mat-card-title>✨ Key Features</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+
+            <ul class="features-list">
+              <li>⚡ Signal-based reactive state</li>
+              <li>🔗 Direct field binding</li>
+              <li>🔄 Instant UI updates</li>
+              <li>🧩 Zero boilerplate logic</li>
+              <li>🛠️ Easily extendable</li>
+            </ul>
+
+            <p class="features-desc">
+              This demo shows how Angular Signal Forms simplify
+              form management while remaining highly performant
+              and maintainable.
+            </p>
+
+          </mat-card-content>
+
+        </mat-card>
+
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
