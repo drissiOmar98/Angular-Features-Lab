@@ -3,7 +3,7 @@ import {MatError, MatLabel, MatSuffix} from '@angular/material/form-field';
 import {MatFormField, MatInput} from '@angular/material/input';
 import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
-import {email, Field, form, required} from '@angular/forms/signals';
+import {email, Field, form, required, schema} from '@angular/forms/signals';
 import {JsonPipe} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
@@ -14,6 +14,18 @@ export interface LoginFormModel{
   email: string;
   password: string;
 }
+
+export const loginFormSchema= schema<LoginFormModel>((rootPath) => {
+    required(rootPath.email,{
+      message: 'Email is required.',
+    });
+    email(rootPath.email,{
+      message: 'Please enter a valid email address.'
+    });
+    required(rootPath.password, {
+      message: 'Please enter a valid password'
+    });
+  })
 @Component({
   selector: 'app-sf-example1',
   imports: [
@@ -43,15 +55,5 @@ export class SfExample1 {
     password: ''
   });
 
-  loginForm = form<LoginFormModel>(this.loginModel, (rootPath) => {
-    required(rootPath.email,{
-      message: 'Email is required.',
-    });
-    email(rootPath.email,{
-      message: 'Please enter a valid email address.'
-    });
-    required(rootPath.password, {
-      message: 'Please enter a valid password'
-    });
-  });
+  loginForm = form<LoginFormModel>(this.loginModel,loginFormSchema);
 }
