@@ -12,5 +12,11 @@ export const SIGNAL_FORM_EXAMPLES: ExampleModel[] = [
     content: 'A complete registration form using writable signals, schema-driven validation, custom password matching, multi-field validation strategies, and conditional field rendering.',
     routerLink: '/signal-forms/example2'
   },
+  {
+    title: 'Example 3: Dynamic Validation with Signal Forms',
+    content: 'Demonstrates conditional and group-based validation using when and applyWhen, real-time schema value access, and reactive UI feedback in a newsletter subscription form.',
+    routerLink: '/signal-forms/example3'
+  },
+
 
 ];
