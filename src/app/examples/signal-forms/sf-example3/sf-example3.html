@@ -1,0 +1,165 @@
+<div class="example-container">
+
+  <!-- Navigation Bar -->
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/signal-forms">
+      Go to List
+    </button>
+    <button mat-stroked-button color="primary" routerLink="/signal-forms/example2">
+      Prev
+    </button>
+    <button mat-stroked-button color="primary" routerLink="/signal-forms/example4">
+      Next
+    </button>
+  </div>
+
+  <mat-tab-group class="main-tabs">
+
+    <mat-tab label="Demo">
+
+      <!-- Header -->
+      <div class="page-header">
+        <h1>Signal Forms – Newsletter Subscription</h1>
+        <p>
+          Demonstrates dynamic validation and conditional requirements using
+          Angular Signal Forms. Required indicators and validation rules
+          update reactively based on user selections.
+        </p>
+      </div>
+
+      <div class="demo-section">
+
+        <!-- Form Card -->
+        <mat-card class="form-card-modern">
+          <mat-card-content>
+
+            <form class="register-form" autocomplete="off">
+
+              <h2 class="form-title">Subscribe to Newsletter</h2>
+
+              <!-- First Name -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>First Name</mat-label>
+                <input matInput
+                       type="text"
+                       [field]="subscribeForm.firstName"/>
+                <mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+
+              <!-- Last Name -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Last Name</mat-label>
+                <input matInput
+                       type="text"
+                       [field]="subscribeForm.lastName"/>
+                <mat-icon matSuffix>person_outline</mat-icon>
+              </mat-form-field>
+
+              <!-- Email -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>
+                  Email
+                 <!-- @if (subscribeForm.email().required()) {
+                    <span class="text-danger">*</span>
+                  }-->
+                </mat-label>
+
+                <input matInput
+                       type="email"
+                       [field]="subscribeForm.email"/>
+
+                <mat-icon matSuffix>email</mat-icon>
+
+                @if (subscribeForm.email().invalid() && subscribeForm.email().touched()) {
+                  @for (error of subscribeForm.email().errors(); track error.kind) {
+                    <mat-error>{{ error.message }}</mat-error>
+                  }
+                }
+              </mat-form-field>
+
+              <!-- Phone -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>
+                  Phone
+                 <!-- @if (subscribeForm.phone().required()) {
+                    <span class="text-danger">*</span>
+                  }-->
+                </mat-label>
+
+                <input matInput
+                       type="tel"
+                       [field]="subscribeForm.phone"/>
+
+                <mat-icon matSuffix>phone</mat-icon>
+
+                @if (subscribeForm.phone().invalid() && subscribeForm.phone().touched()) {
+                  @for (error of subscribeForm.phone().errors(); track error.kind) {
+                    <mat-error>{{ error.message }}</mat-error>
+                  }
+                }
+              </mat-form-field>
+
+              <!-- Send Via -->
+              <div class="send-via-section">
+
+                <p class="section-label">Send via</p>
+
+                <mat-checkbox [field]="subscribeForm.sendViaEmail">
+                  Email
+                </mat-checkbox>
+
+                <mat-checkbox [field]="subscribeForm.sendViaText">
+                  Text
+                </mat-checkbox>
+
+              </div>
+
+              <!-- Years as Fan -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Years as a Fan</mat-label>
+
+                <input matInput
+                       type="number"
+                       [field]="subscribeForm.yearsAsFan"/>
+
+                <mat-icon matSuffix>star</mat-icon>
+
+                @if (subscribeForm.yearsAsFan().invalid() && subscribeForm.yearsAsFan().touched()) {
+                  @for (error of subscribeForm.yearsAsFan().errors(); track error.kind) {
+                    <mat-error>{{ error.message }}</mat-error>
+                  }
+                }
+              </mat-form-field>
+
+              <!-- Actions -->
+              <div class="actions">
+
+                <button mat-raised-button
+                        color="primary"
+                        type="button"
+                        [disabled]="subscribeForm().invalid()">
+
+                  Subscribe
+                </button>
+
+                <button mat-stroked-button
+                        type="button"
+                        color="warn">
+
+                  Cancel
+                </button>
+
+              </div>
+
+            </form>
+
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
