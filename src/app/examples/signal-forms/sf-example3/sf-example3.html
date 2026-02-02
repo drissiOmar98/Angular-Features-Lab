@@ -111,8 +111,16 @@
                 <mat-checkbox [field]="subscribeForm.sendViaText">
                   Text
                 </mat-checkbox>
+                @if (subscribeForm.sendViaText().invalid()) {
+                  <div class="alert alert-danger">
+                    @for (error of subscribeForm.sendViaText().errors(); track error.kind) {
+                      <mat-error>{{ error.message }}</mat-error>
+                    }
+                  </div>
+                }
 
               </div>
+
 
               <!-- Years as Fan -->
               <mat-form-field appearance="outline" class="w-100">
