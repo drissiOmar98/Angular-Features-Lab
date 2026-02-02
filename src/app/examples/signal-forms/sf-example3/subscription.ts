@@ -1,4 +1,4 @@
-import { applyWhen, email, max, min, minLength, required, schema } from "@angular/forms/signals";
+import {applyWhen, email, max, min, minLength, required, schema, validate} from "@angular/forms/signals";
 
 export interface Subscription {
   email: string;
@@ -43,6 +43,11 @@ export const initialData: Subscription = {
  *   - `valueOf()` provides access to live values of other fields.
  *   - Enables cross-field dependencies without manual subscriptions.
  *
+ * ✅ Cross-field delivery validation
+ *   - Ensures at least one delivery method is selected.
+ *   - Uses `validate` with context to compare multiple fields.
+ *   - Prevents invalid submissions when no channel is chosen.
+ *
  * ✅ User-friendly error messages
  *   - Custom messages guide users clearly.
  *   - Improves UX and accessibility.
@@ -62,6 +67,10 @@ export const initialData: Subscription = {
  *   • Required if `sendViaText` is true
  *   • Minimum length: 10 digits
  *
+ * - Send Via:
+ *   • At least one option (Email or Text) must be selected
+ *   • Enforced using cross-field validation
+ *
  * - Years as Fan:
  *   • Must be >= 0
  *   • Must be <= 100
@@ -74,8 +83,9 @@ export const initialData: Subscription = {
  * - Makes the form easy to scale and maintain.
  *
  * This schema demonstrates how Angular Signal Forms enables complex
- * dynamic validation using a clean, declarative approach.
+ * dynamic and cross-field validation using a clean, declarative approach.
  */
+
 
 // Define the validation as part of the model
 export const subscriptionSchema = schema<Subscription>((rootPath) => {
@@ -93,6 +103,78 @@ export const subscriptionSchema = schema<Subscription>((rootPath) => {
       minLength(phonePath, 10, { message: 'Minimum of 10 digits is required' })
     }
   );
+
+  /**
+   * Cross-field validation: Ensure at least one delivery method is selected
+   *
+   * This validation enforces that the user must choose **Email**, **Text**, or both
+   * as a delivery method before submitting the form.
+   *
+   * It demonstrates how Signal Forms enables declarative, cross-field validation
+   * using the `validate` helper and the runtime context object.
+   *
+   * How it works:
+   * - `ctx.value()` retrieves the current field's value (`sendViaText` here).
+   * - `ctx.valueOf()` accesses sibling fields (`sendViaEmail`).
+   * - Both values are passed to `checkSendVia` for centralized validation logic.
+   *
+   * Why this approach is powerful:
+   * ✅ No manual subscriptions
+   * ✅ No imperative form listeners
+   * ✅ Fully reactive and schema-driven
+   * ✅ Keeps business rules centralized
+   *
+   * UX Benefit:
+   * Prevents users from submitting the form without selecting
+   * at least one delivery channel.
+   */
+  validate(rootPath.sendViaText, (ctx) => {
+    const viaText = ctx.value();
+    const viaEmail = ctx.valueOf(rootPath.sendViaEmail);
+    return checkSendVia(viaText, viaEmail);
+  });
+
+  /**
+ * Alternative validation on `sendViaEmail` (optional)
+ *
+ * This commented block shows that the same rule could be attached
+ * to `sendViaEmail` instead of `sendViaText`.
+ *
+ * In practice, attaching it to a single field is sufficient,
+ * as long as the validation reads both values.
+ */
+
+  // validate(rootPath.sendViaEmail, (ctx) => {
+  //   const viaEmail = ctx.value();
+  //   const viaText = ctx.valueOf(rootPath.sendViaText);
+  //   return checkSendVia(viaText, viaEmail);
+  // });
   min(rootPath.yearsAsFan, 0, { message: 'Years cannot be negative' });
   max(rootPath.yearsAsFan, 100, { message: 'Please enter a valid number of years' });
 });
+
+/**
+ * Shared validation helper for delivery method selection
+ *
+ * This function centralizes the business rule that at least
+ * one delivery method must be selected.
+ *
+ * @param viaText - Whether "Send via Text" is selected
+ * @param viaEmail - Whether "Send via Email" is selected
+ * @returns A validation error if neither is selected, otherwise null
+ *
+ * Design Benefits:
+ * ✅ Reusable logic
+ * ✅ Easy to test
+ * ✅ Keeps schema readable
+ * ✅ Avoids duplicated validation code
+ */
+function checkSendVia(viaText: boolean, viaEmail: boolean) {
+  if (viaEmail || viaText) return null;
+  return {
+    kind: 'sendViaMissing',
+    message: 'Must select to send via Email or Text or both'
+  };
+}
+
+
