@@ -17,6 +17,11 @@ export const SIGNAL_FORM_EXAMPLES: ExampleModel[] = [
     content: 'Demonstrates conditional and group-based validation using when and applyWhen, real-time schema value access, and reactive UI feedback in a newsletter subscription form.',
     routerLink: '/signal-forms/example3'
   },
+  {
+    title: 'Example 4: Signal Form Signup with Dynamic Hobbies & Validation',
+    content: 'Signup form with name, email, and dynamic hobbies fields. Features schema-based validation, instant error feedback, and interactive add/remove for hobbies using Angular signals.',
+    routerLink: '/signal-forms/example4'
+  },
 
 
 ];
