@@ -24,6 +24,10 @@ export const routes: Routes = [
     loadChildren: () => import('./examples/signal-forms/signal-forms.routes'),
   },
   {
+    path: 'control-flow',
+    loadChildren: () => import('./examples/control-flow/control-flow.routes'),
+  },
+  {
     path: '**',
     redirectTo: ''
   },
