@@ -1,0 +1,131 @@
+:host {
+  display: contents;
+
+}
+.content {
+  display: grid;
+  grid-template-columns: 1fr 33%;
+  gap: 2rem;
+
+  main {
+    padding-bottom: 2.5rem;
+  }
+
+button {
+  background-color: black;
+  border: none;
+  border-radius: 0.375em;
+  color: white;
+  display: block;
+  min-height: 4.75rem;
+  padding-block: 0.75em;
+  transition: opacity 0.25s ease-out, scale 0.25s ease-out;
+
+  width: 50%;
+  margin: 0 auto;  // <-- centers horizontally
+
+  .title {
+    display: block;
+    font-size: 130%;
+  }
+
+  .subtitle {
+    display: block;
+    font-size: 80%;
+    font-style: normal;
+    margin-top: 0.5em;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    scale: 0.8;
+  }
+
+  .icon {
+    aspect-ratio: 1 / 1;
+    fill: currentColor;
+    position: absolute;
+    inset-inline-end: 0.25em;
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    width: 2.5em;
+  }
+}
+
+
+  aside {
+    a.ad {
+      aspect-ratio: 1 / 1.5;
+      background: linear-gradient(200deg, #ff495d, #6244b0 50%, black 100%);
+      color: white;
+      container-type: inline-size;
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: 1fr auto;
+      margin: 0;
+      outline-color: blue;
+      padding: 0;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      isolation: isolate;
+
+      --frameInset: 3cqi;
+      --frameStyle: solid max(1px, 1cqi) currentColor;
+
+      &::after {
+        border: var(--frameStyle);
+        content: '';
+        inset: var(--frameInset);
+        position: absolute;
+      }
+
+      span {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      span * {
+        display: block;
+        margin-inline: var(--frameInset);
+      }
+
+      strong {
+        border-bottom: var(--frameStyle);
+        font-size: 25cqi;
+        padding-bottom: 3cqi;
+        text-transform: uppercase;
+      }
+
+      em {
+        font-style: normal;
+        font-size: 12cqi;
+        padding-top: 3cqi;
+      }
+
+      time {
+        font-size: 6cqi;
+        padding-block: 2cqi calc(5cqi + var(--frameInset));
+      }
+
+      svg {
+        fill: currentColor;
+        left: 50%;
+        rotate: 20deg;
+        position: absolute;
+        translate: -45% 14%;
+        width: 75%;
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+}
