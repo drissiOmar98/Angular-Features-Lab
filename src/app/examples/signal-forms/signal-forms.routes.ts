@@ -22,6 +22,16 @@ const SIGNAL_FORMS_ROUTES: Route[] = [
     loadComponent: () =>
       import('./sf-example3/sf-example3').then(x => x.SfExample3),
   },
+  {
+    path: 'example4',
+    loadComponent: () =>
+      import('./sf-example4/sf-example4').then(x => x.SfExample4),
+  },
+  {
+    path: 'example5',
+    loadComponent: () =>
+      import('./sf-example5/sf-example5').then(x => x.SfExample5),
+  },
 
 
 ];

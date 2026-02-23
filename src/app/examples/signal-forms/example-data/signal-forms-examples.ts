@@ -22,6 +22,11 @@ export const SIGNAL_FORM_EXAMPLES: ExampleModel[] = [
     content: 'Signup form with name, email, and dynamic hobbies fields. Features schema-based validation, instant error feedback, and interactive add/remove for hobbies using Angular signals.',
     routerLink: '/signal-forms/example4'
   },
+  {
+    title: 'Example 5: Signal Forms Arrays – Repeating Fields & Validation',
+    content: 'Build a form with repeating fields using arrays. Apply validation to each item, create a custom URL validator, and handle dynamic user input efficiently with Angular Signal Forms.',
+    routerLink: '/signal-forms/example5'
+  },
 
 
 ];
