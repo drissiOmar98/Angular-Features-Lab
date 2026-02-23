@@ -1,10 +1,31 @@
 import {Component, signal} from '@angular/core';
 import {initialData, UserProfile, userProfileSchema} from './user-profile';
-import {form} from '@angular/forms/signals';
+import {Field, form} from '@angular/forms/signals';
+import {MatButton, MatIconButton} from '@angular/material/button';
+import {RouterLink} from '@angular/router';
+import {MatTab, MatTabGroup} from '@angular/material/tabs';
+import {MatCard, MatCardContent} from '@angular/material/card';
+import {MatLabel, MatFormField, MatError} from '@angular/material/form-field';
+import {MatIcon} from '@angular/material/icon';
+import {MatInput} from '@angular/material/input';
 
 @Component({
   selector: 'app-sf-example5',
-  imports: [],
+  imports: [
+    MatButton,
+    RouterLink,
+    MatTabGroup,
+    MatTab,
+    MatCard,
+    MatCardContent,
+    Field,
+    MatLabel,
+    MatFormField,
+    MatIcon,
+    MatInput,
+    MatIconButton,
+    MatError
+  ],
   templateUrl: './sf-example5.html',
   styleUrl: './sf-example5.scss',
 })
@@ -60,4 +81,16 @@ export class SfExample5 {
     }));
   }
 
+  onSubmit() {
+    if (this.userProfileForm().valid()) {
+      console.log('Form submitted:', this.userProfileModel());
+      // Handle form submission here
+      // Reset form or navigate to another page
+    }
+  }
+
+  onCancel() {
+    // Reset form (or navigate to another page)
+    this.userProfileForm().reset(initialData);
+  }
 }
