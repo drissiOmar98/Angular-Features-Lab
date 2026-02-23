@@ -67,7 +67,17 @@ export const userProfileSchema = schema<UserProfile>(rootPath => {
   })
 });
 
-
+/**
+ * User Profile Form Schema (Array Validators via Separate Function)
+ *
+ * This variant shows how to separate array item validation into a reusable function.
+ * Improves maintainability when the same rules are applied across multiple arrays.
+ */
+// Apply a set of validators using a separate function
+export const userProfileSchema3 = schema<UserProfile>(rootPath => {
+  required(rootPath.socialLinks, { message: 'If added, the social link is required' });
+  applyEach(rootPath.socialLinks, linksSchema)
+});
 
 
 /**
@@ -102,3 +112,18 @@ function url(field: SchemaPathTree<string>, options?: { message?: string }) {
   });
 }
 
+/**
+ * Social Links Item Validation
+ *
+ * Defines the validation rules for each individual social link in the array.
+ * Reusable function for `applyEach`.
+ *
+ * Rules:
+ * - Each link is required (cannot be empty if added)
+ * - Each link must be a valid URL
+ */
+// Define the set of validation rules for the array items
+const linksSchema = schema<string>((link) => {
+  required(link, { message: 'If added, the social link is required' });
+  url(link);
+});
