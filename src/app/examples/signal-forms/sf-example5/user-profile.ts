@@ -39,6 +39,36 @@ export const userProfileSchema1 = schema<UserProfile>(rootPath => {
   applyEach(rootPath.socialLinks, url)
 });
 
+/**
+ * User Profile Form Schema (Multiple Validators Example)
+ *
+ * Demonstrates how to apply multiple validators to both single fields and
+ * array fields in Angular Signal Forms.
+ *
+ * Features:
+ * - Required field validation
+ * - URL validation for array items
+ * - Declarative, reusable approach
+ */
+// Apply a set of validators
+export const userProfileSchema = schema<UserProfile>(rootPath => {
+  required(rootPath.firstName, { message: 'First name is required' });
+
+  /**
+   * Social Links Array Validation
+   *
+   * - `applyEach` iterates over every item in the `socialLinks` array.
+   * - Each item must be non-empty (`required`) if added.
+   * - Each item must be a valid URL using the reusable `url` validator.
+   */
+  applyEach(rootPath.socialLinks, (path) => {
+    required(path, { message: 'If added, the social link is required' });
+    url(path, { message: 'The social link must be a valid URL' });
+  })
+});
+
+
+
 
 /**
  * Custom URL Validator
@@ -71,3 +101,4 @@ function url(field: SchemaPathTree<string>, options?: { message?: string }) {
     }
   });
 }
+
