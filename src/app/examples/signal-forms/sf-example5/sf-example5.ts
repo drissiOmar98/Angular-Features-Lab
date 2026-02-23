@@ -1,5 +1,5 @@
 import {Component, signal} from '@angular/core';
-import {initialData, UserProfile} from './user-profile';
+import {initialData, UserProfile, userProfileSchema} from './user-profile';
 import {form} from '@angular/forms/signals';
 
 @Component({
@@ -28,7 +28,7 @@ export class SfExample5 {
    * (e.g., `socialLinks`) are applied.
    */
   // Declare a form from the model and logic rules schema
-  userProfileForm = form(this.userProfileModel);
+  userProfileForm = form(this.userProfileModel,userProfileSchema);
 
   /**
    * Adds a new empty social media link to the `socialLinks` array.
