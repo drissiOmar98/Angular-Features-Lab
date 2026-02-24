@@ -27,6 +27,11 @@ export const SIGNAL_FORM_EXAMPLES: ExampleModel[] = [
     content: 'Build a form with repeating fields using arrays. Apply validation to each item, create a custom URL validator, and handle dynamic user input efficiently with Angular Signal Forms.',
     routerLink: '/signal-forms/example5'
   },
+  {
+    title: 'Example 6: Signal Forms – Validating Arrays of Objects',
+    content: 'Demonstrates how to validate repeating arrays of objects using Angular Signal Forms. Covers per-item validation with applyEach, conditional required rules, min/max constraints, regex patterns, and custom URL validators.',
+    routerLink: '/signal-forms/example6'
+  }
 
 
 ];
