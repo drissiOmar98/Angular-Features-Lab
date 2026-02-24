@@ -18,6 +18,12 @@ export const initialData: UserProfile = {
   socialLinks: []
 }
 
+export const initialLink: ProfileLink = {
+  linkUrl: '',
+  platform: '',
+  memberSinceYear: ''
+}
+
 /**
  * UserProfile Validation Schema (Signal Forms)
  *
