@@ -5,7 +5,7 @@ import { WeatherData } from '../types';
 import { MatSelect } from '@angular/material/select';
 import { beforeEach, expect, it, describe } from "vitest";
 
-describe.only('WeatherWidget', () => {
+describe('WeatherWidget', () => {
     let component: WeatherWidget;
     let fixture: ComponentFixture<WeatherWidget>;
     let widgetTestingData: WeatherData;

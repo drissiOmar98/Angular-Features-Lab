@@ -1,10 +1,28 @@
 import {Component, signal} from '@angular/core';
 import {initialData, initialLink, UserProfile, userProfileSchema} from './user-profile';
-import {form} from '@angular/forms/signals';
+import {Field,form} from '@angular/forms/signals';
+import {MatButton} from '@angular/material/button';
+import {RouterLink} from '@angular/router';
+import {MatTab, MatTabGroup} from '@angular/material/tabs';
+import {MatCardContent} from '@angular/material/card';
+import {MatIcon} from '@angular/material/icon';
+import {MatInput} from '@angular/material/input';
+import {MatLabel,MatFormField} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-sf-example6',
-  imports: [],
+  imports: [
+    MatButton,
+    RouterLink,
+    MatTabGroup,
+    MatTab,
+    MatCardContent,
+    Field,
+    MatFormField,
+    MatIcon,
+    MatInput,
+    MatLabel
+  ],
   templateUrl: './sf-example6.html',
   styleUrl: './sf-example6.scss',
 })

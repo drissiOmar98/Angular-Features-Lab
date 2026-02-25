@@ -1,1 +1,143 @@
-<p>sf-example6 works!</p>
+<div class="example-container">
+
+  <!-- Navigation Bar -->
+  <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
+    <button mat-stroked-button color="primary" routerLink="/signal-forms">Go to List</button>
+    <button mat-stroked-button color="primary" routerLink="/signal-forms/example5">Prev</button>
+    <button mat-stroked-button color="primary" routerLink="/signal-forms/example7">Next</button>
+  </div>
+
+  <mat-tab-group class="main-tabs">
+    <mat-tab label="Demo">
+
+      <!-- Header -->
+      <div class="page-header">
+        <h1>Signal Forms – User Profile</h1>
+        <p>
+          Demonstrates dynamic validation with arrays using Angular Signal Forms.
+          Add, remove, and validate multiple social media links reactively.
+        </p>
+      </div>
+
+      <div class="demo-section">
+
+        <!-- Form Card -->
+        <mat-card class="form-card-modern">
+          <mat-card-content>
+            <form class="register-form" autocomplete="off">
+
+              <h2 class="form-title">User Profile</h2>
+
+              <!-- First Name -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" [field]="userProfileForm.firstName"/>
+                <mat-icon matSuffix>person</mat-icon>
+                @if (userProfileForm.firstName().invalid() && userProfileForm.firstName().touched()) {
+                  @for (error of userProfileForm.firstName().errors(); track error.kind) {
+                    <mat-error>{{ error.message }}</mat-error>
+                  }
+                }
+              </mat-form-field>
+
+              <!-- Last Name -->
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" [field]="userProfileForm.lastName"/>
+                <mat-icon matSuffix>person_outline</mat-icon>
+              </mat-form-field>
+
+              <!-- Social Links -->
+              <div class="social-links-section">
+                <p class="section-label">Social Links</p>
+
+                @if (userProfileModel().socialLinks.length === 0) {
+                  <div class="empty-state">
+                    No social links added yet. Click "Add Social Link" to get started.
+                  </div>
+                }
+
+                @for (link of userProfileModel().socialLinks; track $index) {
+                  <div class="social-link-row">
+                    <!-- URL Field -->
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Profile URL</mat-label>
+                      <input matInput type="url"
+                             [field]="userProfileForm.socialLinks[$index].linkUrl"
+                             placeholder="https://example.com/your-profile"/>
+                      <mat-icon matSuffix>link</mat-icon>
+                      @let linkField= userProfileForm.socialLinks[$index].linkUrl;
+                      @if (linkField.invalid() && linkField.touched()) {
+                        @for (error of linkField().errors(); track error.kind) {
+                          <mat-error>{{ error.message }}</mat-error>
+                        }
+                      }
+                    </mat-form-field>
+
+                    <!-- Platform Field -->
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Platform</mat-label>
+                      <input matInput type="text"
+                             [field]="userProfileForm.socialLinks[$index].platform"
+                             placeholder="LinkedIn, Twitter, etc."/>
+                      @let platformfield = userProfileForm.socialLinks[$index].platform;
+                      @if (platformfield().invalid() && platformfield().touched()) {
+                        @for (error of field().errors(); track error.kind) {
+                          <mat-error>{{ error.message }}</mat-error>
+                        }
+                      }
+                    </mat-form-field>
+
+                    <!-- Member Since Year Field -->
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Member Since Year</mat-label>
+                      <input matInput type="number"
+                             [field]="userProfileForm.socialLinks[$index].memberSinceYear"
+                             placeholder="Year"/>
+                      @let field = userProfileForm.socialLinks[$index].memberSinceYear;
+                      @if (field().invalid() && field().touched()) {
+                        @for (error of field().errors(); track error.kind) {
+                          <mat-error>{{ error.message }}</mat-error>
+                        }
+                      }
+                    </mat-form-field>
+
+                    <button mat-icon-button color="warn" type="button"
+                            (click)="removeSocialLink($index)" aria-label="Remove social link">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+                }
+
+
+                <button mat-stroked-button color="primary"
+                        type="button"
+                        (click)="addSocialLink()">
+                  + Add Social Link
+                </button>
+              </div>
+
+              <!-- Actions -->
+              <div class="actions">
+                <button mat-raised-button color="primary"
+                        type="button"
+                        [disabled]="userProfileForm().invalid()"
+                        (click)="onSubmit()">
+                  Save Profile
+                </button>
+                <button mat-stroked-button color="warn"
+                        type="button"
+                        (click)="onCancel()">
+                  Cancel
+                </button>
+              </div>
+
+            </form>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+</div>
