@@ -4,7 +4,7 @@ import {Field,form} from '@angular/forms/signals';
 import {MatButton} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
-import {MatCardContent} from '@angular/material/card';
+import {MatCard, MatCardContent} from '@angular/material/card';
 import {MatIcon} from '@angular/material/icon';
 import {MatInput} from '@angular/material/input';
 import {MatLabel,MatFormField} from '@angular/material/form-field';
@@ -21,7 +21,8 @@ import {MatLabel,MatFormField} from '@angular/material/form-field';
     MatFormField,
     MatIcon,
     MatInput,
-    MatLabel
+    MatLabel,
+    MatCard
   ],
   templateUrl: './sf-example6.html',
   styleUrl: './sf-example6.scss',
