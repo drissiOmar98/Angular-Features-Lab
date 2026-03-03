@@ -1,0 +1,55 @@
+<mat-card class="table-card">
+  <div class="table-wrapper">
+    <table class="mat-table-like">
+
+      <thead>
+        <tr class="mat-header-row">
+          <ng-container
+            *ngTemplateOutlet="
+              headers || defaultHeaderTemplate;
+              context: { $implicit: data }
+            "
+          ></ng-container>
+        </tr>
+      </thead>
+
+      <tbody>
+        @if (data?.length) {
+          @for (row of data; track $index) {
+            <tr class="mat-row">
+              <ng-container
+                *ngTemplateOutlet="
+                  rows || defaultRowTemplate;
+                  context: { $implicit: row }
+                "
+              ></ng-container>
+            </tr>
+          }
+        } @else {
+          <tr class="empty-row">
+            <td [attr.colspan]="10">No data available</td>
+          </tr>
+        }
+      </tbody>
+
+    </table>
+  </div>
+</mat-card>
+
+<!-- Default headers -->
+<ng-template #defaultHeaderTemplate let-data>
+  @for (header of data[0] | keyvalue; track header.key) {
+    <th class="mat-header-cell">
+      {{ header.key }}
+    </th>
+  }
+</ng-template>
+
+<!-- Default rows -->
+<ng-template #defaultRowTemplate let-row>
+  @for (cell of row | keyvalue; track cell.key) {
+    <td class="mat-cell">
+      {{ cell.value }}
+    </td>
+  }
+</ng-template>

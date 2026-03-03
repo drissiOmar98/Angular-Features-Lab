@@ -1,0 +1,166 @@
+<ng-template #elseContent>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <p>Else content</p>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+@if (true) {
+  <mat-card appearance="outlined" >
+    <mat-card-content>
+      <p>Rendered element</p>
+    </mat-card-content>
+  </mat-card>
+} @else {
+  <ng-container *ngTemplateOutlet="elseContent"></ng-container>
+}
+
+
+<mat-toolbar color="primary" class="toolbar">
+  <span class="app-title">Sign Up Flow with Firebase</span>
+
+  <span class="spacer"></span>
+
+  <!-- LOGIN TEMPLATE -->
+  <ng-template #loginTemplate>
+    <button
+      mat-raised-button
+      color="accent"
+      routerLink="/login"
+      class="login-button"
+    >
+      <mat-icon>login</mat-icon>
+      Login
+    </button>
+  </ng-template>
+
+  <!-- CONTROL FLOW -->
+  @if (user$ | async; as user) {
+    <button
+      mat-button
+      [matMenuTriggerFor]="userMenu"
+      class="user-button"
+    >
+      <img
+        class="profile-image"
+        [src]="user.photoURL ?? 'assets/images/image-placeholder.png'"
+        alt="Profile"
+      />
+      <span class="username">{{ user.displayName }}</span>
+      <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item routerLink="/profile">
+        <mat-icon>person</mat-icon>
+        Profile
+      </button>
+
+      <button mat-menu-item routerLink="/settings">
+        <mat-icon>settings</mat-icon>
+        Settings
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <button mat-menu-item (click)="logout()">
+        <mat-icon color="warn">logout</mat-icon>
+        Logout
+      </button>
+    </mat-menu>
+  } @else {
+    <ng-container *ngTemplateOutlet="loginTemplate"></ng-container>
+  }
+</mat-toolbar>
+
+
+<!-- No templates provided, will use default layout -->
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Employees (Default Layout)</mat-card-title>
+    <mat-card-subtitle>Uses fallback header and row templates</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <app-table [data]="employees"></app-table>
+  </mat-card-content>
+</mat-card>
+
+
+<!-- Basic configured template -->
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Employees (Custom Headers)</mat-card-title>
+    <mat-card-subtitle>Only header template is overridden</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <app-table [data]="employees">
+      <ng-template #headers>
+        <th class="mat-header-cell">First</th>
+        <th class="mat-header-cell">Last</th>
+      </ng-template>
+    </app-table>
+  </mat-card-content>
+</mat-card>
+
+<!-- Highly configured template with conditional elements -->
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Inventory</mat-card-title>
+    <mat-card-subtitle>Custom rows with actions & control flow</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <app-table [data]="inventory">
+
+      <!-- Custom headers -->
+      <ng-template #headers>
+        <th class="mat-header-cell">Item</th>
+        <th class="mat-header-cell">Price</th>
+        <th class="mat-header-cell">Status</th>
+        <th class="mat-header-cell">Actions</th>
+      </ng-template>
+
+      <!-- Custom rows -->
+      <ng-template #rows let-row>
+        <td class="mat-cell">{{ row.name }}</td>
+
+        <td class="mat-cell">
+          {{ row.price | currency: row.currency }}
+        </td>
+
+        <td class="mat-cell">
+          @if (row.inStock > 0) {
+            <mat-chip color="primary" >In stock</mat-chip>
+          } @else {
+            <mat-chip color="warn" >Out of stock</mat-chip>
+          }
+        </td>
+
+        <td class="mat-cell actions">
+          @if (row.inStock > 0) {
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="purchaseItem(row.plu)"
+            >
+              Buy now
+            </button>
+          }
+
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="Delete item"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-template>
+
+    </app-table>
+  </mat-card-content>
+</mat-card>
+
