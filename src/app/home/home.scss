@@ -1,0 +1,25 @@
+:host ::ng-deep  {
+  display: block;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+  background: #f8f9fa;
+
+  .mdc-button{
+    padding: 24px;
+  }
+  .cta-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .modern-landing {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    background: #fff;
+  }
+}
+
