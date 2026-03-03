@@ -9,7 +9,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatInput} from '@angular/material/input';
 import {MatLabel,MatFormField} from '@angular/material/form-field';
 
-@Component({
+/*@Component({
   selector: 'app-sf-example6',
   imports: [
     MatButton,
@@ -65,4 +65,4 @@ export class SfExample6 {
     this.userProfileForm().reset(initialData);
   }
 
-}
+}*/
