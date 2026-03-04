@@ -1,15 +1,15 @@
 import {Component, signal} from '@angular/core';
 import {initialData, initialLink, UserProfile, userProfileSchema} from './user-profile';
-import {Field,form} from '@angular/forms/signals';
-import {MatButton} from '@angular/material/button';
+import {form, FormField} from '@angular/forms/signals';
+import {MatButton, MatIconButton} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import {MatIcon} from '@angular/material/icon';
 import {MatInput} from '@angular/material/input';
-import {MatLabel,MatFormField} from '@angular/material/form-field';
+import {MatLabel, MatFormField, MatError} from '@angular/material/form-field';
 
-/*@Component({
+@Component({
   selector: 'app-sf-example6',
   imports: [
     MatButton,
@@ -17,12 +17,14 @@ import {MatLabel,MatFormField} from '@angular/material/form-field';
     MatTabGroup,
     MatTab,
     MatCardContent,
-    Field,
+    FormField,
     MatFormField,
     MatIcon,
     MatInput,
     MatLabel,
-    MatCard
+    MatCard,
+    MatIconButton,
+    MatError
   ],
   templateUrl: './sf-example6.html',
   styleUrl: './sf-example6.scss',
@@ -34,7 +36,7 @@ export class SfExample6 {
   userProfileModel = signal<UserProfile>(initialData);
 
   // Declare a form from the model and logic rules schema
-  userProfileForm = form(this.userProfileModel, userProfileSchema);
+   userProfileForm = form(this.userProfileModel, userProfileSchema);
 
   // Add an empty social media profile link
   addSocialLink() {
@@ -65,4 +67,4 @@ export class SfExample6 {
     this.userProfileForm().reset(initialData);
   }
 
-}*/
+}

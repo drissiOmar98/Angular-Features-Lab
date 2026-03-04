@@ -1,7 +1,6 @@
-<!--
 <div class="example-container">
 
-  &lt;!&ndash; Navigation Bar &ndash;&gt;
+  <!-- Navigation Bar -->
   <div class="flex flex-wrap gap-2 items-center justify-start mt-4 mb-4">
     <button mat-stroked-button color="primary" routerLink="/signal-forms">Go to List</button>
     <button mat-stroked-button color="primary" routerLink="/signal-forms/example5">Prev</button>
@@ -11,7 +10,7 @@
   <mat-tab-group class="main-tabs">
     <mat-tab label="Demo">
 
-      &lt;!&ndash; Header &ndash;&gt;
+      <!-- Header -->
       <div class="page-header">
         <h1>Signal Forms – User Profile</h1>
         <p>
@@ -22,17 +21,17 @@
 
       <div class="demo-section">
 
-        &lt;!&ndash; Form Card &ndash;&gt;
+        <!-- Form Card -->
         <mat-card class="form-card-modern">
           <mat-card-content>
             <form class="register-form" autocomplete="off">
 
               <h2 class="form-title">User Profile</h2>
 
-              &lt;!&ndash; First Name &ndash;&gt;
+              <!-- First Name -->
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>First Name</mat-label>
-                <input matInput type="text" [field]="userProfileForm.firstName"/>
+                <input matInput type="text" [formField]="userProfileForm.firstName"/>
                 <mat-icon matSuffix>person</mat-icon>
                 @if (userProfileForm.firstName().invalid() && userProfileForm.firstName().touched()) {
                   @for (error of userProfileForm.firstName().errors(); track error.kind) {
@@ -41,14 +40,14 @@
                 }
               </mat-form-field>
 
-              &lt;!&ndash; Last Name &ndash;&gt;
+              <!-- Last Name -->
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Last Name</mat-label>
-                <input matInput type="text" [field]="userProfileForm.lastName"/>
+                <input matInput type="text" [formField]="userProfileForm.lastName"/>
                 <mat-icon matSuffix>person_outline</mat-icon>
               </mat-form-field>
 
-              &lt;!&ndash; Social Links &ndash;&gt;
+              <!-- Social Links -->
               <div class="social-links-section">
                 <p class="section-label">Social Links</p>
 
@@ -58,42 +57,45 @@
                   </div>
                 }
 
-                @for (link of userProfileModel().socialLinks; track $index) {
+                @for (link of userProfileForm.socialLinks; track $index) {
                   <div class="social-link-row">
-                    &lt;!&ndash; URL Field &ndash;&gt;
+                    <!-- URL Field -->
                     <mat-form-field appearance="outline" class="w-100">
                       <mat-label>Profile URL</mat-label>
                       <input matInput type="url"
-                             [field]="userProfileForm.socialLinks[$index].linkUrl"
+                             [id]="'socialLink' + $index"
+                             [formField]="userProfileForm.socialLinks[$index].linkUrl"
                              placeholder="https://example.com/your-profile"/>
                       <mat-icon matSuffix>link</mat-icon>
-                      @let linkField= userProfileForm.socialLinks[$index].linkUrl;
-                      @if (linkField.invalid() && linkField.touched()) {
+                      @let linkField = userProfileForm.socialLinks[$index].linkUrl;
+                      @if (linkField().invalid() && linkField().touched()) {
                         @for (error of linkField().errors(); track error.kind) {
                           <mat-error>{{ error.message }}</mat-error>
                         }
                       }
                     </mat-form-field>
 
-                    &lt;!&ndash; Platform Field &ndash;&gt;
+                    <!-- Platform Field -->
                     <mat-form-field appearance="outline" class="w-100">
                       <mat-label>Platform</mat-label>
                       <input matInput type="text"
-                             [field]="userProfileForm.socialLinks[$index].platform"
+                             [id]="'platform' + $index"
+                             [formField]="userProfileForm.socialLinks[$index].platform"
                              placeholder="LinkedIn, Twitter, etc."/>
-                      @let platformfield = userProfileForm.socialLinks[$index].platform;
-                      @if (platformfield().invalid() && platformfield().touched()) {
+                      @let platformField = userProfileForm.socialLinks[$index].platform;
+                      @if (platformField().invalid() && platformField().touched()) {
                         @for (error of field().errors(); track error.kind) {
                           <mat-error>{{ error.message }}</mat-error>
                         }
                       }
                     </mat-form-field>
 
-                    &lt;!&ndash; Member Since Year Field &ndash;&gt;
+                    <!-- Member Since Year Field -->
                     <mat-form-field appearance="outline" class="w-100">
                       <mat-label>Member Since Year</mat-label>
                       <input matInput type="number"
-                             [field]="userProfileForm.socialLinks[$index].memberSinceYear"
+                             [id]="'memberSinceYear' + $index"
+                             [formField]="userProfileForm.socialLinks[$index].memberSinceYear"
                              placeholder="Year"/>
                       @let field = userProfileForm.socialLinks[$index].memberSinceYear;
                       @if (field().invalid() && field().touched()) {
@@ -118,7 +120,7 @@
                 </button>
               </div>
 
-              &lt;!&ndash; Actions &ndash;&gt;
+              <!-- Actions -->
               <div class="actions">
                 <button mat-raised-button color="primary"
                         type="button"
@@ -142,4 +144,3 @@
     </mat-tab>
   </mat-tab-group>
 </div>
--->
