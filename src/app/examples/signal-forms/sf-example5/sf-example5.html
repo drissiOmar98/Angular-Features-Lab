@@ -31,7 +31,7 @@
               <!-- First Name -->
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>First Name</mat-label>
-                <input matInput type="text" [field]="userProfileForm.firstName"/>
+                <input matInput type="text" [formField]="userProfileForm.firstName"/>
                 <mat-icon matSuffix>person</mat-icon>
                 @if (userProfileForm.firstName().invalid() && userProfileForm.firstName().touched()) {
                   @for (error of userProfileForm.firstName().errors(); track error.kind) {
@@ -43,7 +43,7 @@
               <!-- Last Name -->
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Last Name</mat-label>
-                <input matInput type="text" [field]="userProfileForm.lastName"/>
+                <input matInput type="text" [formField]="userProfileForm.lastName"/>
                 <mat-icon matSuffix>person_outline</mat-icon>
               </mat-form-field>
 
@@ -61,7 +61,7 @@
                   <div class="social-link-row">
                     <mat-form-field appearance="outline" class="w-100">
                       <input matInput type="url"
-                             [field]="userProfileForm.socialLinks[$index]"
+                             [formField]="userProfileForm.socialLinks[$index]"
                              [id]="'socialLink' + $index"
                              placeholder="https://example.com/your-profile"/>
                       <mat-icon matSuffix>link</mat-icon>

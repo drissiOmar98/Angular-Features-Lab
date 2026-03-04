@@ -42,7 +42,7 @@
                 <mat-label>First Name</mat-label>
                 <input matInput
                        type="text"
-                       [field]="subscribeForm.firstName"/>
+                       [formField]="subscribeForm.firstName"/>
                 <mat-icon matSuffix>person</mat-icon>
               </mat-form-field>
 
@@ -51,7 +51,7 @@
                 <mat-label>Last Name</mat-label>
                 <input matInput
                        type="text"
-                       [field]="subscribeForm.lastName"/>
+                       [formField]="subscribeForm.lastName"/>
                 <mat-icon matSuffix>person_outline</mat-icon>
               </mat-form-field>
 
@@ -66,7 +66,7 @@
 
                 <input matInput
                        type="email"
-                       [field]="subscribeForm.email"/>
+                       [formField]="subscribeForm.email"/>
 
                 <mat-icon matSuffix>email</mat-icon>
 
@@ -88,7 +88,7 @@
 
                 <input matInput
                        type="tel"
-                       [field]="subscribeForm.phone"/>
+                       [formField]="subscribeForm.phone"/>
 
                 <mat-icon matSuffix>phone</mat-icon>
 
@@ -104,11 +104,11 @@
 
                 <p class="section-label">Send via</p>
 
-                <mat-checkbox [field]="subscribeForm.sendViaEmail">
+                <mat-checkbox [formField]="subscribeForm.sendViaEmail">
                   Email
                 </mat-checkbox>
 
-                <mat-checkbox [field]="subscribeForm.sendViaText">
+                <mat-checkbox [formField]="subscribeForm.sendViaText">
                   Text
                 </mat-checkbox>
                 @if (subscribeForm.sendViaText().invalid()) {
@@ -128,7 +128,7 @@
 
                 <input matInput
                        type="number"
-                       [field]="subscribeForm.yearsAsFan"/>
+                       [formField]="subscribeForm.yearsAsFan"/>
 
                 <mat-icon matSuffix>star</mat-icon>
 

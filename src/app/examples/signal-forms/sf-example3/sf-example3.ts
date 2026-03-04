@@ -8,7 +8,7 @@ import {MatIcon} from '@angular/material/icon';
 import {MatInput} from '@angular/material/input';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {initialData, Subscription, subscriptionSchema} from './subscription';
-import {Field, form} from '@angular/forms/signals';
+import {form, FormField} from '@angular/forms/signals';
 
 /**
  * Signal Forms Example 3 – Newsletter Subscription Form
@@ -50,7 +50,7 @@ import {Field, form} from '@angular/forms/signals';
     MatLabel,
     MatFormField,
     MatIcon,
-    Field,
+    FormField,
     MatInput,
     MatCheckbox,
     MatSuffix,

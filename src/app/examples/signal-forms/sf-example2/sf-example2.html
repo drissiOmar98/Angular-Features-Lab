@@ -32,21 +32,21 @@
               <!-- Email -->
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Email</mat-label>
-                <input matInput type="email" [field]="registrationForm.email"/>
+                <input matInput type="email" [formField]="registrationForm.email"/>
                 <mat-icon matSuffix>email</mat-icon>
               </mat-form-field>
 
               <!-- Password -->
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" [field]="registrationForm.password"/>
+                <input matInput type="password" [formField]="registrationForm.password"/>
                 <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
 
               <!-- Confirm Password -->
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Confirm Password</mat-label>
-                <input matInput type="password" [field]="registrationForm.confirmPassword"/>
+                <input matInput type="password" [formField]="registrationForm.confirmPassword"/>
                 @for (error of registrationForm.confirmPassword().errors(); track error.kind) {
                   <mat-error>{{ error.message }}</mat-error>
                 }
@@ -56,7 +56,7 @@
               <!-- Country -->
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Country</mat-label>
-                <mat-select [field]="registrationForm.country">
+                <mat-select [formField]="registrationForm.country">
                   <mat-option value="Poland">Poland</mat-option>
                   <mat-option value="Greece">Greece</mat-option>
                   <mat-option value="US">US</mat-option>
@@ -68,7 +68,7 @@
               @if (!registrationForm.state().hidden()) {
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>State</mat-label>
-                  <input matInput type="text" [field]="registrationForm.state"/>
+                  <input matInput type="text" [formField]="registrationForm.state"/>
                   <mat-icon matSuffix>location_on</mat-icon>
                 </mat-form-field>
               }

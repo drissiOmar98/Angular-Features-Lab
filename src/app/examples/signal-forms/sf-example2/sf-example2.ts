@@ -5,7 +5,7 @@ import {MatSelect} from '@angular/material/select';
 import {MatInput} from '@angular/material/input';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
-import {Field, form} from '@angular/forms/signals';
+import {form, FormField} from '@angular/forms/signals';
 import {registerFormSchema} from './register.schema';
 import {MatIcon} from '@angular/material/icon';
 import {RouterLink} from '@angular/router';
@@ -27,7 +27,7 @@ export interface RegisterFormModel {
     MatInput,
     MatCard,
     MatButton,
-    Field,
+    FormField,
     MatError,
     MatLabel,
     MatIcon,

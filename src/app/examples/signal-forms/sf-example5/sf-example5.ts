@@ -1,6 +1,6 @@
 import {Component, signal} from '@angular/core';
 import {initialData, UserProfile, userProfileSchema} from './user-profile';
-import {Field, form} from '@angular/forms/signals';
+import {FormField, form} from '@angular/forms/signals';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
@@ -18,7 +18,7 @@ import {MatInput} from '@angular/material/input';
     MatTab,
     MatCard,
     MatCardContent,
-    Field,
+    FormField,
     MatLabel,
     MatFormField,
     MatIcon,

@@ -1,6 +1,6 @@
 import {Component, effect, signal} from '@angular/core';
 import {initialUserData, User, userSchema} from './hobby';
-import {Field, form} from '@angular/forms/signals';
+import {form, FormField} from '@angular/forms/signals';
 import {JsonPipe} from '@angular/common';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
@@ -15,7 +15,7 @@ import {RouterLink} from '@angular/router';
     MatCardContent,
     MatCard,
     MatButton,
-    Field,
+    FormField,
     MatTabGroup,
     RouterLink,
     MatTab

@@ -1,5 +1,5 @@
 import {RegisterFormModel} from './sf-example2';
-import {customError, email, hidden, required, schema, validate, validateTree} from '@angular/forms/signals';
+import {email, hidden, required, schema, validate, validateTree} from '@angular/forms/signals';
 
 /**
  * Registration Form Schema for Signal Forms
@@ -71,7 +71,7 @@ export const registerFormSchema = schema<RegisterFormModel>((field) => {
    */
 
   // Multi-field password validation
-  validateTree(field, (ctx) => {
+/*  validateTree(field, (ctx) => {
     const password = ctx.valueOf(field.password);
     const confirmPassword = ctx.valueOf(field.confirmPassword);
     return password === confirmPassword
@@ -89,7 +89,31 @@ export const registerFormSchema = schema<RegisterFormModel>((field) => {
 
         })
       ]
+  });*/
+  // Multi-field password validation
+  validateTree(field, (ctx) => {
+    const password = ctx.valueOf(field.password);
+    const confirmPassword = ctx.valueOf(field.confirmPassword);
+
+    if (password === confirmPassword) {
+      return undefined;
+    }
+
+
+    return [
+      {
+        field: ctx.fieldTreeOf(field.password),
+        kind: 'PasswordMismatch',
+        message: 'Passwords do not match',
+      },
+      {
+        field: ctx.fieldTreeOf(field.confirmPassword),
+        kind: 'PasswordMismatch',
+        message: 'Passwords do not match',
+      }
+    ];
   });
+
 
    // Country is always required
   required(field.country);

@@ -3,7 +3,7 @@ import {MatError, MatLabel, MatSuffix} from '@angular/material/form-field';
 import {MatFormField, MatInput} from '@angular/material/input';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
-import {customError, email, Field, form, required, schema, submit} from '@angular/forms/signals';
+import {email,form, FormField, required, schema, submit} from '@angular/forms/signals';
 import {JsonPipe} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
@@ -36,7 +36,7 @@ export const loginFormSchema= schema<LoginFormModel>((rootPath) => {
     MatFormField,
     MatCard,
     MatButton,
-    Field,
+    FormField,
     JsonPipe,
     RouterLink,
     MatCardContent,
@@ -60,6 +60,7 @@ export class SfExample1 {
 
   loginForm = form<LoginFormModel>(this.loginModel,loginFormSchema);
 
+/*
   submitForm(event: Event) {
     event.preventDefault();
 
@@ -74,4 +75,23 @@ export class SfExample1 {
       }
     })
   }
+*/
+
+  submitForm(event: Event) {
+    event.preventDefault();
+
+    submit(this.loginForm, async (form) => {
+      try {
+        await firstValueFrom(this.loginService.login(form().value()));
+        return undefined; // Succès
+      } catch (error) {
+        // Retournez un objet simple au lieu de customError
+        return {
+          kind: 'SubmitError', // Optionnel, utile pour le typage
+          message: 'An unexpected error occurred. Please try again later.',
+        };
+      }
+    });
+  }
+
 }
