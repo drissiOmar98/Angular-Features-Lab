@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, signal, ChangeDetectionStrategy} from '@angular/core';
 import {initialData, UserProfile, userProfileSchema} from './user-profile';
 import {FormField, form} from '@angular/forms/signals';
 import {MatButton, MatIconButton} from '@angular/material/button';
@@ -27,6 +27,7 @@ import {MatInput} from '@angular/material/input';
     MatError
   ],
   templateUrl: './sf-example5.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sf-example5.scss',
 })
 export class SfExample5 {

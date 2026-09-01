@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {AsyncPipe, CurrencyPipe, NgTemplateOutlet} from '@angular/common';
 import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {MatDivider} from '@angular/material/divider';
@@ -40,6 +40,7 @@ interface User {
     MatChip
   ],
   templateUrl: './ng-template-example1.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ng-template-example1.scss',
 })
 export class NgTemplateExample1 {

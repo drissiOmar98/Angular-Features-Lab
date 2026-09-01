@@ -1,4 +1,4 @@
-import {Component, resource} from '@angular/core';
+import {Component, resource, ChangeDetectionStrategy} from '@angular/core';
 import {
   MatCard,
   MatCardAvatar,
@@ -42,6 +42,7 @@ function fetchRandomUser(): Promise<any> {
     MatCardAvatar
   ],
   templateUrl: './resource-api-example6.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './resource-api-example6.scss',
 })
 export class ResourceApiExample6 {

@@ -1,4 +1,4 @@
-import {Component, ContentChild, Input, TemplateRef} from '@angular/core';
+import {Component, ContentChild, Input, TemplateRef, ChangeDetectionStrategy} from '@angular/core';
 import {KeyValuePipe, NgTemplateOutlet} from '@angular/common';
 import {MatCard} from '@angular/material/card';
 
@@ -11,6 +11,7 @@ import {MatCard} from '@angular/material/card';
     MatCard
   ],
   templateUrl: './table.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './table.scss',
 })
 export class Table {

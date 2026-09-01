@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, signal, ChangeDetectionStrategy} from '@angular/core';
 import {httpResource} from '@angular/common/http';
 import {RouterLink} from '@angular/router';
 import {MatButton} from '@angular/material/button';
@@ -34,6 +34,7 @@ interface Country {
     MatCardTitle
   ],
   templateUrl: './resource-api-example9.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './resource-api-example9.scss',
 })
 export class ResourceApiExample9 {

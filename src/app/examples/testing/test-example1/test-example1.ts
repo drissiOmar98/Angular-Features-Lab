@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, signal, ChangeDetectionStrategy} from '@angular/core';
 import {WeatherWidget} from './weather-widget/weather-widget';
 import {TimeSpan, WeatherData} from './types';
 import {MatCard, MatCardContent} from '@angular/material/card';
@@ -18,6 +18,7 @@ import {RouterLink} from '@angular/router';
     RouterLink
   ],
   templateUrl: './test-example1.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './test-example1.scss',
 })
 export class TestExample1 {

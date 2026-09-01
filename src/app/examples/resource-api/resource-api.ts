@@ -1,4 +1,4 @@
-import {Component, signal, WritableSignal} from '@angular/core';
+import {Component, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import {ExampleModel} from '../../shared/models/example.model';
@@ -13,6 +13,7 @@ import {RX_RESOURCE_EXAMPLES} from './example-data/rx-resource-examples';
     MatCardModule
   ],
   templateUrl: './resource-api.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './resource-api.scss',
 })
 export class ResourceApi {

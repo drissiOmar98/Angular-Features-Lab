@@ -1,4 +1,4 @@
-import {Component, resource, signal} from '@angular/core';
+import {Component, resource, signal, ChangeDetectionStrategy} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {MatButton} from '@angular/material/button';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
@@ -35,6 +35,7 @@ export const API_URL = `https://jsonplaceholder.typicode.com/users`;
     MatIconModule
   ],
   templateUrl: './resource-api-example5.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './resource-api-example5.scss',
 })
 export class ResourceApiExample5 {

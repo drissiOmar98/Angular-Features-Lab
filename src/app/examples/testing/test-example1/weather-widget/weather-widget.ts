@@ -1,4 +1,4 @@
-import {Component, input, output} from '@angular/core';
+import {Component, input, output, ChangeDetectionStrategy} from '@angular/core';
 import {TimeSpan, WeatherData} from '../types';
 import {MatFormField, MatLabel, MatOption, MatSelect} from '@angular/material/select';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
@@ -18,6 +18,7 @@ import {MatIcon} from '@angular/material/icon';
     MatCardHeader
   ],
   templateUrl: './weather-widget.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './weather-widget.scss',
 })
 export class WeatherWidget {

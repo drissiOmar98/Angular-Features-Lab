@@ -1,4 +1,4 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, inject, signal, ChangeDetectionStrategy} from '@angular/core';
 import {MatError, MatLabel, MatSuffix} from '@angular/material/form-field';
 import {MatFormField, MatInput} from '@angular/material/input';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
@@ -49,6 +49,7 @@ export const loginFormSchema= schema<LoginFormModel>((rootPath) => {
     MatError
   ],
   templateUrl: './sf-example1.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sf-example1.scss',
 })
 export class SfExample1 {

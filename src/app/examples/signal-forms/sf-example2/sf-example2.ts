@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, signal, ChangeDetectionStrategy} from '@angular/core';
 import { MatOption } from '@angular/material/core';
 import {MatError, MatFormField, MatLabel, MatSuffix} from '@angular/material/form-field';
 import {MatSelect} from '@angular/material/select';
@@ -38,6 +38,7 @@ export interface RegisterFormModel {
     MatTabGroup
   ],
   templateUrl: './sf-example2.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sf-example2.scss',
 })
 export class SfExample2 {

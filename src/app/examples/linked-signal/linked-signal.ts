@@ -1,4 +1,4 @@
-import {Component, signal, WritableSignal} from '@angular/core';
+import {Component, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
 import {ExampleModel} from '../../shared/models/example.model';
 import {LINKED_SIGNAL_EXAMPLES} from './example-data/linked-signal-examples';
 import {RouterLink} from '@angular/router';
@@ -14,6 +14,7 @@ import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/mat
     MatCardTitle
   ],
   templateUrl: './linked-signal.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './linked-signal.scss',
 })
 export class LinkedSignal {

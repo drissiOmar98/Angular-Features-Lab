@@ -1,4 +1,4 @@
-import {Component, linkedSignal, signal} from '@angular/core';
+import {Component, linkedSignal, signal, ChangeDetectionStrategy} from '@angular/core';
 import {MatFormField, MatHint, MatOption, MatSelect, MatSelectChange} from '@angular/material/select';
 import {RouterLink} from '@angular/router';
 import {MatButton} from '@angular/material/button';
@@ -26,6 +26,7 @@ import {MatLabel} from '@angular/material/form-field';
     MatHint
   ],
   templateUrl: './ls-example1.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ls-example1.scss',
 })
 export class LsExample1 {

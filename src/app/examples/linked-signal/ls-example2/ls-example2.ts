@@ -1,4 +1,4 @@
-import {Component, computed, linkedSignal, signal} from '@angular/core';
+import {Component, computed, linkedSignal, signal, ChangeDetectionStrategy} from '@angular/core';
 import {MatFormField,MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import { MatOption } from '@angular/material/core';
@@ -42,6 +42,7 @@ const PRODUCTS: Product[] = [
     RouterLink
   ],
   templateUrl: './ls-example2.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ls-example2.scss',
 })
 export class LsExample2 {

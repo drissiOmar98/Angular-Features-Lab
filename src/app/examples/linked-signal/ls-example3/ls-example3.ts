@@ -1,4 +1,4 @@
-import {Component, linkedSignal, signal} from '@angular/core';
+import {Component, linkedSignal, signal, ChangeDetectionStrategy} from '@angular/core';
 import {MatFormField,MatLabel} from '@angular/material/form-field';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
@@ -20,6 +20,7 @@ import {MatInput} from '@angular/material/input';
     MatLabel
   ],
   templateUrl: './ls-example3.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ls-example3.scss',
 })
 export class LsExample3 {

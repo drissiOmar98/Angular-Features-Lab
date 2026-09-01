@@ -1,4 +1,4 @@
-import {Component, effect, signal} from '@angular/core';
+import {Component, effect, signal, ChangeDetectionStrategy} from '@angular/core';
 import {initialUserData, User, userSchema} from './hobby';
 import {form, FormField} from '@angular/forms/signals';
 import {JsonPipe} from '@angular/common';
@@ -21,6 +21,7 @@ import {RouterLink} from '@angular/router';
     MatTab
   ],
   templateUrl: './sf-example4.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sf-example4.scss',
 })
 export class SfExample4 {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {NgTemplateOutlet} from '@angular/common';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
 import {MatButton} from '@angular/material/button';
@@ -17,6 +17,7 @@ import {MatCard, MatCardContent} from '@angular/material/card';
     MatCardContent,
   ],
   templateUrl: './ng-template-example2.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ng-template-example2.scss',
 })
 export class NgTemplateExample2 {

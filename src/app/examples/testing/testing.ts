@@ -1,4 +1,4 @@
-import {Component, signal, WritableSignal} from '@angular/core';
+import {Component, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {RouterLink} from '@angular/router';
 
@@ -15,6 +15,7 @@ import {ExampleModel} from '../../shared/models/example.model';
     RouterLink
   ],
   templateUrl: './testing.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './testing.scss',
 })
 export class Testing {

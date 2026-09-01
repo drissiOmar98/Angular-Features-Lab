@@ -1,4 +1,4 @@
-import {Component, signal, WritableSignal} from '@angular/core';
+import {Component, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
 import {ExampleModel} from '../../shared/models/example.model';
 import {SIGNAL_FORM_EXAMPLES} from './example-data/signal-forms-examples';
 import {MatCard, MatCardContent, MatCardHeader} from '@angular/material/card';
@@ -15,6 +15,7 @@ import {MatCardTitle} from '@angular/material/card';
     MatCardTitle
   ],
   templateUrl: './signal-forms.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './signal-forms.scss',
 })
 export class SignalForms {

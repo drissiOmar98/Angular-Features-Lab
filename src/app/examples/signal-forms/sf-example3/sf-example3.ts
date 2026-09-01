@@ -1,4 +1,4 @@
-import {Component, effect, signal} from '@angular/core';
+import {Component, effect, signal, ChangeDetectionStrategy} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
 import {RouterLink} from '@angular/router';
@@ -57,6 +57,7 @@ import {form, FormField} from '@angular/forms/signals';
     MatError
   ],
   templateUrl: './sf-example3.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sf-example3.scss',
 })
 export class SfExample3 {

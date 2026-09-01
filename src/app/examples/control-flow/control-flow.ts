@@ -1,4 +1,4 @@
-import {Component, signal, WritableSignal} from '@angular/core';
+import {Component, signal, WritableSignal, ChangeDetectionStrategy} from '@angular/core';
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
 import {RouterLink} from '@angular/router';
 import {ExampleModel} from '../../shared/models/example.model';
@@ -14,6 +14,7 @@ import {CONTROL_FLOW_EXAMPLES} from './example-data/control-flow-examples';
     MatCard
   ],
   templateUrl: './control-flow.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './control-flow.scss',
 })
 export class ControlFlow {

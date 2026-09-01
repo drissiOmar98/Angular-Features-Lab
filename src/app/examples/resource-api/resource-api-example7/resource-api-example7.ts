@@ -1,4 +1,4 @@
-import {Component, resource, signal} from '@angular/core';
+import {Component, resource, signal, ChangeDetectionStrategy} from '@angular/core';
 import {MatFormField, MatOption, MatSelect, MatSelectChange} from '@angular/material/select';
 import {RouterLink} from '@angular/router';
 import {MatButton} from '@angular/material/button';
@@ -27,6 +27,7 @@ interface WeatherData {
     MatLabel
   ],
   templateUrl: './resource-api-example7.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './resource-api-example7.scss',
 })
 export class ResourceApiExample7 {

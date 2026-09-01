@@ -1,4 +1,4 @@
-import {Component, resource, signal} from '@angular/core';
+import {Component, resource, signal, ChangeDetectionStrategy} from '@angular/core';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import {MatIcon} from '@angular/material/icon';
@@ -29,6 +29,7 @@ function fetchResourceApi(limit = 10): Promise<ResourceData[] | null> {
 
   ],
   templateUrl: './resource-api-example1.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './resource-api-example1.scss',
 })
 export class ResourceApiExample1 {

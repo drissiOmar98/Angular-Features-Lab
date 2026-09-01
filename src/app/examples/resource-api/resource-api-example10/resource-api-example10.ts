@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {httpResource} from '@angular/common/http';
 import {MatTab, MatTabGroup} from '@angular/material/tabs';
 import {RouterLink} from '@angular/router';
@@ -20,6 +20,7 @@ import {MatIcon} from '@angular/material/icon';
     MatCardTitle
   ],
   templateUrl: './resource-api-example10.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './resource-api-example10.scss',
 })
 export class ResourceApiExample10 {

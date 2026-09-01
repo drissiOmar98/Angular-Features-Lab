@@ -38,7 +38,7 @@
                     <p class="country-text"><strong>Region:</strong> {{country.region}}</p>
                     <p class="country-text"><strong>Population:</strong> {{country.population | number}}</p>
                     @if (country.flags?.svg) {
-                      <img [src]="country.flags?.svg" alt="Flag" class="country-flag" />
+                      <img [src]="$safeNavigationMigration(country.flags?.svg)" alt="Flag" class="country-flag" />
                     }
                   </mat-card-content>
                 </mat-card>

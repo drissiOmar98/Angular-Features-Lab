@@ -1,4 +1,4 @@
-import {Component, resource, signal} from '@angular/core';
+import {Component, resource, signal, ChangeDetectionStrategy} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {MatCard, MatCardContent, MatCardModule} from '@angular/material/card';
 import {MatIcon} from '@angular/material/icon';
@@ -18,6 +18,7 @@ import {RouterLink} from '@angular/router';
     MatCardModule,
   ],
   templateUrl: './resource-api-example2.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './resource-api-example2.scss',
 })
 export class ResourceApiExample2 {
