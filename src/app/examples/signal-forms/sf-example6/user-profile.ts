@@ -63,6 +63,10 @@ export const userProfileSchema = schema<UserProfile>(rootPath => {
 // Platform is required if a social link was entered
 // Member since year must be between 1990 and the current year
 // Member since year must be 4 digits
+
+// Define dynamic year constraints
+const currentYear = new Date().getFullYear();
+const minYear = 1990;
 /**
  * Validation schema for each social link object
  *
@@ -85,16 +89,32 @@ const linksSchema = schema<ProfileLink>((path) => {
   });
 
    // Year constraints
-  min(path.memberSinceYear, minYear, { message: 'Year must be 1990 or later' });
-  max(path.memberSinceYear, currentYear, { message: 'Year must be this year or earlier' });
+  // Year range constraints (custom, since memberSinceYear is a string field)
+  year(path.memberSinceYear, minYear, currentYear);
 
   // Ensure 4-digit year format
   pattern(path.memberSinceYear, /^\d{4}$/, { message: 'Year must be four digits (YYYY)' });
 });
 
-// Define dynamic year constraints
-const currentYear = new Date().getFullYear();
-const minYear = 1990;
+
+// Reusable custom year-range validator
+function year(field: SchemaPathTree<string>, min: number, max: number) {
+  validate(field, (ctx) => {
+    const raw = ctx.value();
+    if (!raw || !/^\d{4}$/.test(raw)) return null; // let pattern() handle format errors
+
+    const value = Number(raw);
+    if (value < min) {
+      return { kind: 'min', message: `Year must be ${min} or later` };
+    }
+    if (value > max) {
+      return { kind: 'max', message: `Year must be ${max} or earlier` };
+    }
+    return null;
+  });
+}
+
+
 
 // Reusable custom url validator
 // NOTE: Validates that the url is well-formed, not that it exists
